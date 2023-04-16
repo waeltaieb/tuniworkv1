@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/style.css">
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body style="background-image: url(images/bg-inscrit.svg)">
+  
+    <div class="flex justify-between items-center ">
+      <span class="mt-3 cursor-pointer">
+        <a href="acceuil">
+          <img class="h-14 ml-24 inline"
+          src="images/tunlogo.png">
+        </a>     
+      </span>
+
+      <span class="text-3xl cursor-pointer mx-2 md:hidden block">
+        <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+      </span>
+    </div>
+    <div class="  flex justify-center my-40  ">
+        <div class=" backdrop-blur-sm bg-white/30 grid-cols-4   rounded   border-black" >
+            
+            <p class="text-center text-black  mt-7  font-bold text-2xl">  s'inscrire comme client ou freelancer</p>
+        
+        <div style="padding: 2em;">
+          <div class="flex flex-wrap gap-10 m-4 justify-center my-6" >
+            <label class="cursor-pointer">
+              <input type="radio" id = "radio1" class="peer sr-only" name="utilisateur" />
+              <div class="w-72 max-w-xl h-40  rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
+                <div class="flex flex-col gap-1">
+                  <div class="flex items-center justify-between">
+                    <box-icon name='user' ></box-icon>
+                    <div>
+                      <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m10.6 13.8l-2.175-2.175q-.275-.275-.675-.275t-.7.3q-.275.275-.275.7q0 .425.275.7L9.9 15.9q.275.275.7.275q.425 0 .7-.275l5.675-5.675q.275-.275.275-.675t-.3-.7q-.275-.275-.7-.275q-.425 0-.7.275ZM12 22q-2.075 0-3.9-.788q-1.825-.787-3.175-2.137q-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175q1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138q1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175q-1.35 1.35-3.175 2.137Q14.075 22 12 22Z" /></svg>
+                    </div>
+                  </div>
+                  <div class="flex items-end justify-between">
+                    <p><span class="text-lg font-bold">je suis un client, j'embauche pour un projet</span></p>
+                    
+                  </div>
+                </div>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+                <input type="radio" id = "radio2" class="peer sr-only" name="utilisateur" />
+                <div class="w-72 max-w-xl  h-40 rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
+                  <div class="flex flex-col gap-1 " >
+                    <div class="flex items-center justify-between">
+                        <box-icon type='solid' name='briefcase'></box-icon>
+                      <div>
+                        <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m10.6 13.8l-2.175-2.175q-.275-.275-.675-.275t-.7.3q-.275.275-.275.7q0 .425.275.7L9.9 15.9q.275.275.7.275q.425 0 .7-.275l5.675-5.675q.275-.275.275-.675t-.3-.7q-.275-.275-.7-.275q-.425 0-.7.275ZM12 22q-2.075 0-3.9-.788q-1.825-.787-3.175-2.137q-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175q1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138q1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175q-1.35 1.35-3.175 2.137Q14.075 22 12 22Z" /></svg>
+                      </div>
+                    </div>
+                    <div class="flex items-end justify-between">
+                      <p><span class="text-lg font-bold">je suis freelancer, à la recherche d'un travail</span></p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            </div>
+            <div class="flex justify-center h-50">
+                <button onclick = "checkRadio()" class="rounded-full  bg-sky-400 w-60 h-20 font-bold text-blue-50 "><a id="lien"> céer un compte </a></button> 
+                
+            </div>
+            <div class="flex justify-center h-50 my-10"><h4 class="text-gray-600"> Possède déjà un compte ? </h4> &nbsp;<p class="text-sky-600"><a href=""> Connextion</a></p></div>
+            </div>
+        </div>
+            <script>
+                let  url = document.getElementById("lien");
+          function checkRadio(){
+             // accessing the radio buttons
+             let radio1 = document.getElementById('radio1');
+             let radio2 = document.getElementById('radio2');
+
+             // checking if any radio button is selected
+             if(radio1.checked){
+                url.href = 'acceuil';
+             }
+             if(radio2.checked){
+                output.innerHTML = "The radio button with value " + radio2.value + " is checked!";
+             }
+          }
+       </script>
+</body>
+</html>
