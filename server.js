@@ -4,11 +4,12 @@ const path = require('path');
 const temp_path = path.join(__dirname, 'views');
 const hbs = require('hbs');
 const dotenv = require("dotenv"); 
+const cookieParser = require("cookie-parser");
 
 dotenv.config({ path:"./.env"});
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
