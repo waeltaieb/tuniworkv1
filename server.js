@@ -3,25 +3,41 @@ const app = express();
 const path = require('path');
 const temp_path = path.join(__dirname, 'views');
 const hbs = require('hbs');
+const dotenv = require("dotenv"); 
+
+dotenv.config({ path:"./.env"});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.urlencoded({ extended: false}));
+app.use(express.json());
+
+hbs.registerPartials(__dirname + '/views/partials');
+
+const mysql      = require('mysql');
+const db = mysql.createConnection({
+  host     : process.env.DATABASE_HOST,
+  user     : process.env.DATABASE_USER,
+  password : process.env.DATABASE_PASSWORD,
+  database : process.env.DATABASE,
+});
+ 
+db.connect((error) => {
+    if(error){
+        console.log(error)
+    }else{
+        console.log("db connecte")
+    }
+}
+
+);
 
 app.set('view engine', 'hbs');
 app.set('views', temp_path);
-app.use(express.static(path.join(__dirname, 'public')));
-hbs.registerPartials(__dirname + '/views/partials');
-app.use("/images", express.static(path.join(__dirname, "/public/images")));
-app.get('/',(req,res) => {
-    res.render('home')
-});
-app.get('/acceuil',(req,res) => {
-    res.render('home')
-});
 
-app.get('/inscription',(req,res) => {
-    res.render('inscription')
-});
+//routes
+app.use('/', require('./routes/pages'));
+app.use('/', require('./routes/auth'));
 
-app.get('/inscritfreelacnce',(req,res) => {
-    res.render('inscritfreelance')
-});
 
 app.listen(3000);
