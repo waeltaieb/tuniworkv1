@@ -2,7 +2,11 @@
 module.exports = {
   content: [ "./*.hbs", "./**/*.hbs"],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        '128': '52rem',
+      }
+    },
   },
   plugins: [],
 }

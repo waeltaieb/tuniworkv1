@@ -88,7 +88,7 @@ exports.login = async (req, res) => {
                 httpOnly: true,
               };
               res.cookie("acces", token, cookieOptions);
-              res.status(200).redirect("/acceuil");
+              res.status(200).redirect("/profile-freelance");
             }
           }
         }
