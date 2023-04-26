@@ -1,0 +1,89 @@
+
+  {{> header}}
+
+
+{{#with tab}}
+  <section class="text-gray-600 body-font">
+<!-- component -->
+<div class="max-w-screen-xl mx-auto">
+
+    
+
+    <main class="mt-10">
+
+      <div class="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative" style="height: 24em;">
+        <div class="absolute left-0 bottom-0 w-full h-full z-10"
+          style="background-image: linear-gradient(180deg,transparent,rgba(0,0,0,.7));"></div>
+        <img src="{{image_url}}" class="absolute left-0 top-0 w-full h-full z-0 object-cover" />
+        <div class="p-4 absolute bottom-0 left-0 z-20">
+          <h2 class="text-4xl font-semibold text-gray-100 leading-tight">
+           {{titre}}
+          </h2>
+          <div class="flex mt-3">
+            <img src="https://randomuser.me/api/portraits/men/97.jpg"
+              class="h-10 w-10 rounded-full mr-2 object-cover" />
+            <div>
+              <p class="font-semibold text-gray-200 text-sm"> Mike Sullivan </p>
+              <p class="font-semibold text-gray-400 text-xs"> 14 Aug </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
+        {{tab.contenu}}
+
+      </div>
+      <div class="flex w-full max-w-screen-md items-center  ">
+
+
+
+
+<!-- This is an example component -->
+<div class=" w-full max-w-screen-md  relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
+    <div class="relative flex gap-4">
+
+        <div class="flex flex-col w-full">
+            <div class="flex flex-row justify-between">
+                <p class="relative text-xl whitespace-nowrap truncate overflow-hidden">COMMENTOR</p>
+                <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
+            </div>
+            <p class="text-gray-400 text-sm">20 April 2022, at 14:88 PM</p>
+        </div>
+    </div>
+    <p class="-mt-4 text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quisquam vero adipisci beatae voluptas dolor ame.</p>
+</div>
+
+
+
+</div>
+      <div class="flex mx-auto  max-w-screen-md items-center  shadow-lg mt-4  mb-4 ">
+   <form class="w-full  bg-white rounded-lg px-4 pt-2">
+      <div class="flex flex-wrap -mx-3 mb-6">
+         <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
+         <div class="w-full md:w-full px-3 mb-2 mt-2">
+            <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" placeholder='Type Your Comment' required></textarea>
+         </div>
+         <div class="w-full md:w-full flex items-end  px-3">
+            <div class="flex  w-1/2 text-gray-700 px-2 mr-auto">
+            </div>
+            <div class="-mr-1 items-end ">
+               <input type='submit' class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value='Post Comment'>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+    </main>
+    <!-- main ends here -->
+
+  </div>
+  </section>
+{{/with}}
+  {{> footer}}
+  <script>
+    function Menu(e) {
+      let list = document.querySelector('ul');
+      e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
+    }
+  </script>

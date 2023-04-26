@@ -26,6 +26,10 @@ router.get('/profile-freelance',(req,res) => {
 router.get('/client',(req,res) => {
     res.render('client')
 });
+router.get('/journal',(req,res) => {
+    res.render('journal')
+});
+
 router.get('/contact',(req,res) => {
     res.render('contact')
 });

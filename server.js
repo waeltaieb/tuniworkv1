@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const temp_path = path.join(__dirname, 'views');
 const hbs = require('hbs');
+const exphbs = require('express-handlebars');
 const dotenv = require("dotenv"); 
 const cookieParser = require("cookie-parser");
 
@@ -13,7 +14,10 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
-hbs.registerPartials(__dirname + '/views/partials');
+ hbs.registerPartials(__dirname + '/views/partials');
+
+
+
 
 const mysql      = require('mysql');
 const db = mysql.createConnection({
@@ -36,9 +40,11 @@ db.connect((error) => {
 app.set('view engine', 'hbs');
 app.set('views', temp_path);
 
+
 //routes
 app.use('/', require('./routes/pages'));
 app.use('/', require('./routes/auth'));
+app.use('/', require('./routes/posts'));
 
 
 app.listen(3000);
