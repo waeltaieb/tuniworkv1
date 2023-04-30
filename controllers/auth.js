@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { promisify } = require("util");
 
 const db = mysql.createConnection({
   host: process.env.DATABASE_HOST,
@@ -88,7 +89,8 @@ exports.login = async (req, res) => {
                 httpOnly: true,
               };
               res.cookie("acces", token, cookieOptions);
-              res.status(200).redirect("/profile-freelance");
+              res.status(200).redirect("/dashboarde");
+              
             }
           }
         }
@@ -96,4 +98,42 @@ exports.login = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  exports.isLoggedIn = async (req, res, next) => {
+
+    if (req.cookies.acces) {
+      try {
+        const decode = await promisify(jwt.verify)(
+          req.cookies.acces,
+          process.env.JWT_SECRET
+        );
+
+        db.query(
+          "select * from utilisateurs where id=?",
+          [decode.id],
+          (err, results) => {
+
+            if (!results) {
+              return next();
+            }
+            req.utilisateurs = results[0];
+            return next();
+          }
+        );
+      } catch (error) {
+        console.log(error);
+        return next();
+      }
+    } else {
+      next();
+    }
+  };
+  
+  exports.logout = async (req, res) => {
+    res.cookie("acces", "logout", {
+      expires: new Date(Date.now() + 2 * 1000),
+      httpOnly: true,
+    });
+    res.status(200).redirect("/acceuil");
   };

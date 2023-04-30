@@ -12,13 +12,25 @@ const db = mysql.createConnection({
 
 router.get('/post/:post_id',(req,res) => {
     const id = req.params.post_id;
-    db.query('SELECT * FROM blogs WHERE id = 1' , function (error, results, fields) {
+    db.query('SELECT * FROM blogs WHERE id = ?' , [id], function (error, results, fields) {
 
         if (error) throw error;
 
         res.render('post', {
-            layout: 'main',
-           });
+            tab : results
+        });
+
+    });
+});
+router.get('/journal',(req,res) => { 
+    db.query('SELECT * FROM blogs ' , function (error, results, fields) {
+
+        if (error) throw error;
+        
+        res.render('journal', {
+           
+            tab : results
+        });
 
     });
 });

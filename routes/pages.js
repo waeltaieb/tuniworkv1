@@ -10,25 +10,16 @@ router.get('/acceuil',(req,res) => {
     res.render('home')
 });
 
-router.get('/inscription',(req,res) => {
-    res.render('inscription')
-});
 
-router.get('/register',(req,res) => {
-    res.render('register')
-});
-router.get('/connexion',(req,res) => {
-    res.render('connexion')
-});
+
 router.get('/profile-freelance',(req,res) => {
     res.render('profile-freelance')
 });
 router.get('/client',(req,res) => {
     res.render('client')
 });
-router.get('/journal',(req,res) => {
-    res.render('journal')
-});
+
+
 
 router.get('/contact',(req,res) => {
     res.render('contact')
