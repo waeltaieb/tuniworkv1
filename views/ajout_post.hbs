@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuniWork</title>
+</head>
+
+<body>
+  {{> navbar}}
+  <!-- component -->
+  <div class="flex items-center justify-center p-12 mt-28">
+
+
+    <div class="mx-auto w-full max-w-[550px]">
+          
+      <h3 class=" text-4xl justify-center items-center font-bold text-blue-400 align-middle mb-4">Ajoute nouvelle blog</h3>
+    
+      <form action="" method="POST">
+        <div class=" flex justify-center items-center  bg-white">
+          <div
+            class="w-full md:w-full relative grid grid-cols-1 md:grid-cols-3 border border-gray-300 bg-gray-100 rounded-lg">
+            <div
+              class="rounded-l-lg p-4 bg-gray-200 flex flex-col justify-center items-center border-0 border-r border-gray-300 ">
+              <label class="cursor-pointer hover:opacity-80 inline-flex items-center shadow-md my-2 px-2 py-2 bg-gray-900 text-gray-50 border border-transparent
+        rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none 
+       focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
+                for="restaurantImage">
+
+                ajouter image
+                <input id="restaurantImage" class="text-sm cursor-pointer w-36 hidden" type="file">
+              </label>
+              <button class='inline-flex items-center shadow-md my-2 px-2 py-2 bg-gray-900 text-gray-50 border border-transparent
+        rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none 
+       focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150'>
+                effacer image
+              </button>
+            </div>
+            <div
+              class="relative order-first md:order-last h-28 md:h-auto flex justify-center items-center border border-dashed border-gray-400 col-span-2 m-2 rounded-lg bg-no-repeat bg-center bg-origin-padding bg-cover">
+              <span class="text-gray-400 opacity-75">
+                <svg class="w-14 h-14" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="0.7" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="w-full  sm:w-full">
+          <div class="mb-5">
+            <label for="titre" class="mb-3 block text-base font-medium text-[#07074D]">
+              titre de post
+            </label>
+            <input type="text" name="titre" id="titre" placeholder="titre"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+          </div>
+        </div>
+        <!-- component -->
+
+
+
+        <div class="max-w-2xl mx-auto">
+
+          <label for="contenu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+            Contenu</label>
+          <textarea id="contenu" rows="4"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="contenu..."></textarea>
+
+
+        </div>
+
+        <div>
+          <button
+            class="hover:shadow-form rounded-md mt-4 bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+            Publier
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {{> footer}}
+</body>
+
+</html>

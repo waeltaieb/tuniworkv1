@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/styles/style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuniWork</title>
+</head>
+
+<body>
+  {{> navbar}}
+  <div class="ml-32 grid w-3/4 grid-rows-2 items-center justify-center rounded-2xl py-4">
+    <div class="mx-5 my-2 grid h-40 grid-cols-3 gap-0 rounded-xl border bg-blue-50 shadow">
+      <div>
+        <div class="groupe relative inline-block">
+          <img class="ml-1 mt-2 h-28 w-28 rounded-full border-2 border-white"
+            src="/uploads/{{utilisateurs.image_url}}" />
+          <div class="absolute inset-0">
+
+          </div>
+          <span class="absolute bottom-0.5 right-0.5 h-4 w-4 rounded-full border-2 border-white bg-green-500"></span>
+        </div>
+      </div>
+      <div class="my-9">
+
+        <h1>{{utilisateurs.nom}} {{utilisateurs.prenom}}</h1>
+        <h6 class="text-gray-500">{{utilisateurs.pseudo}}</h6>
+      </div>
+      <div class="my-9">
+        
+        <a href="parametre"
+          class="h-11 ml-40 w-44 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800">modifier profile
+          </a>
+      </div>
+    </div>
+    <div class="mx-4 mt-2 grid rounded-xl border bg-blue-50 shadow">
+      <div class="flex">
+        <div class="flex">
+          <h1 class="px-7 py-5 text-2xl font-bold">developpeur web</h1>
+
+        </div>
+        <div class="ml-auto mr-20 flex">
+          <h1 class="px-7 py-5 text-2xl font-bold">$20.00/h</h1>
+
+        </div>
+      </div>
+      <br />
+      <div class="flex mb-7">
+        {{#if freelance}}
+        <p class="px-2">{{freelance.discription}}</p>
+        {{/if }}
+      </div>
+    </div>
+    <div class="mx-4 mt-5  grid rounded-xl border bg-blue-50 shadow">
+      <div class="flex">
+        <h1 class="px-7 py-5 text-xl font-bold">Votre CV</h1>
+      </div>
+      <div class=" flex justify-center">
+      <div class="  w-1/2  mb-10 flex justify-center ">
+        <label
+          class="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+          <span class="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <span class="font-medium text-gray-600">
+              Déposer des fichiers à joindre ou,
+              <span class="text-blue-600 underline"> parcourir</span>
+            </span>
+          </span>
+          <input type="file" name="file_upload" class="hidden">
+        </label>
+      </div>
+      </div>
+      <div class="flex justify-center mb-7">
+        <button type="submit"
+          class=" w-44  rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800">
+          Enregistrer mon CV</button>
+      </div>
+
+    </div>
+    <div class="mx-4 mt-4 grid rounded-xl border bg-blue-50 shadow">
+      <div class="flex">
+        <h1 class="px-7 py-5 text-2xl font-bold">Votre Compeatnce</h1>
+        
+      </div>
+      <div class="mb ml-6">
+        <ul class="mb-3 flex">
+          {{#each comptance}}
+          <li class="mr-5 rounded-md border bg-blue-400 p-1 text-white">{{nom}}</li>
+          {{/each }}
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+  {{> footer}}
+</body>
+
+</html>

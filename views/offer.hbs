@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/styles/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuniWork</title>
+</head>
+
+<body>
+    {{> navbar}}
+    <div class="flex flex-row h-auto justify-center items-center mt-7 ">
+
+
+        <div class="w-2/4">
+            <div class="p-4 rounded-md block items-center justify-center">
+                <div class="flex w-full">
+                    <div class="w-full rounded-xl border bg-white p-5 shadow-md">
+                        <div class="flex w-full items-center justify-between border-b pb-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="text-lg font-bold text-slate-700">Joe Smith</div>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-6 mt-4">
+                            <div class="mb-3 text-xl font-bold">Nulla sed leo tempus, feugiat velit vel, rhoncus
+                                neque?</div>
+
+                            <div class="mb-3 text-l font-bold">Compétences requises</div>
+                            <div class=" mb-4">
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node
+                                    js</span>
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node
+                                    js</span>
+                            </div>
+                            <div class="mb-3 text-l font-bold">Description de la mission</div>
+                            <div class="text-sm text-neutral-600  mb-4">Aliquam a tristique sapien, nec bibendum urna.
+                                Maecenas convallis dignissim turpis, non suscipit mauris interdum at. Morbi sed
+                                gravida nisl, a pharetra nulla. Etiam tincidunt turpis leo, ut mollis ipsum
+                                consectetur quis. Etiam faucibus est risus, ac condimentum mauris consequat nec.
+                                Curabitur eget feugiat massa</div>
+                            <div class="mb-3 text-l font-bold">Profil recherché</div>
+                            <div class="text-sm text-neutral-600  mb-4">Aliquam a tristique sapien, nec bibendum urna.
+                                Maecenas convallis dignissim turpis, non suscipit mauris interdum at. Morbi sed
+                                gravida nisl, a pharetra nulla. Etiam tincidunt turpis leo, ut mollis ipsum
+                                consectetur quis. Etiam faucibus est risus, ac condimentum mauris consequat nec.
+                                Curabitur eget feugiat massa</div>
+
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-slate-500">
+                                <div class="flex space-x-4 md:space-x-8">
+                                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                                        <ion-icon class="mr-1.5 h-5 w-5" name="cash-outline"></ion-icon>
+
+                                        <span>1250 dt</span>
+                                    </div>
+                                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                                        <ion-icon class="mr-1.5 h-5 w-5" name="hourglass-outline"></ion-icon>
+                                        <span>4 mois</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex w-full mt-1">
+                    <div class="w-full rounded-xl border bg-white p-5 shadow-md">
+
+                        <div class="flex items-center justify-center p-12">
+
+                            <div class="mx-auto w-full max-w-[550px] bg-white">
+                                <form class="py-6 px-9" action="" method="POST">
+                                    <div class="mb-5">
+                                        <label for="description"
+                                            class="mb-3 block text-base font-medium text-[#07074D]">
+                                            Votre offer:
+                                        </label>
+                                        <input type="text" name="description" id="description" placeholder="ecrire ... "
+                                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    </div>
+
+                                    <div class="mb-5">
+                                        <label for="montant" class="mb-3 block text-base font-medium text-[#07074D]">
+                                            Montant d'offer:
+                                        </label>
+                                        <input type="number" name="montant" id="montant" placeholder="856 "
+                                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                    </div>
+
+                                    <div class="mb-6 pt-4">
+                                        <label class="mb-5 block text-xl font-semibold text-[#07074D]">
+                                            Télécharger cv
+                                        </label>
+
+                                        <div class="mb-8">
+                                            <input type="file" name="file" id="file" class="sr-only" />
+                                            <label for="file"
+                                                class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center">
+                                                <div>
+                                                    <span class="mb-2 block text-xl font-semibold text-[#07074D]">
+                                                        Déposer votre cv
+                                                    </span>
+                                                    <span class="mb-2 block text-base font-medium text-[#6B7280]">
+                                                        Or
+                                                    </span>
+                                                    <span
+                                                        class="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
+                                                        parcourir
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                                            Envoyer offer
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+</body>
+
+</html>

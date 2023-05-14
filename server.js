@@ -6,9 +6,21 @@ const hbs = require('hbs');
 const { engine } = require("express-handlebars");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+const session = require('express-session');
+
+const Handlebars = require('handlebars');
+const dateFormat = require('handlebars-dateformat');
+
+
+
+Handlebars.registerHelper('dateFormat', dateFormat);
 
 dotenv.config({ path: "./.env" });
-
+app.use(session({
+    secret : 'webslesson',
+    resave : true,
+    saveUninitialized : true
+  }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
