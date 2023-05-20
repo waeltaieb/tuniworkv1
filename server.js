@@ -64,6 +64,8 @@ app.set("views", "./views");
 //routes
 app.use('/', require('./routes/pages'));
 app.use('/', require('./routes/auth'));
+app.use('/', require('./routes/freelance'));
+app.use('/', require('./routes/client'));
 app.use('/', require('./routes/posts'));
 
 

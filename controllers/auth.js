@@ -57,6 +57,48 @@ exports.register = async (req, res) => {
     );
   });
 };
+
+exports.registerClient = async (req, res) => {
+  const { nom, prenom, pseudo, email, mot_de_passe, confirm_mot_de_passe, date_nai } = req.body;
+  const type = "client";
+  db.query( 'SELECT * FROM utilisateurs WHERE email = ?', [email], async (error, results) => {
+    if (error) {
+      console.log(error);
+      return res.render('register', {
+        message: 'Erreur serveur, veuillez réessayer ultérieurement',
+      });
+    }
+
+    if (results.length > 0) {
+      return res.render('register', {
+        message: 'Email non valide',
+      });
+    } else if (mot_de_passe !== confirm_mot_de_passe) {
+      return res.render('register', {
+        message: 'Veuillez vérifier votre mot de passe',
+      });
+    }
+
+    let hash_mot_de_passe = await bcrypt.hash(mot_de_passe, 8);
+
+    db.query(
+      'INSERT INTO utilisateurs SET ?',
+      { nom: nom, prenom: prenom, pseudo: pseudo, email: email, mot_de_passe: hash_mot_de_passe, date_nai: date_nai, type_compte: type },
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          return res.render('register', {
+            message: 'Erreur serveur, veuillez réessayer ultérieurement',
+          });
+        } else {
+          return res.render('connexion');
+
+        }
+      }
+    );
+  });
+};
+
 exports.parametre = (req, res) => {
   const storage = multer.diskStorage({
     destination: function (request, file, callback) {
@@ -183,7 +225,13 @@ exports.login = (req, res, next) => {
 
               
               
+            } else  if (result[0].type_compte == "client")  {
+
+              req.session.userclient = result[0];
+              res.status(200).redirect("/dashboardClient");
+
             } else {
+
 
             }
 
@@ -218,7 +266,7 @@ exports.modifier = (req, res, next) => {
       });
     }
 
-    const image_url = req.file.filename;
+    const image_url = req.file. filename;
     const { id_utilisateurs, discription, categories, tags, nom, prenom } = req.body;
     const tagsArray = tags.split(',').map(tag => tag.replace(/[\[\]":{}]|\bvalue\b/g, '').trim());
 
@@ -231,7 +279,8 @@ exports.modifier = (req, res, next) => {
         });
       }
 
-      db.query('UPDATE freelance SET discription = ?, categories = ? WHERE id_utilisateurs = ?', [discription, categories, id_utilisateurs], (error, results) => {
+      const updateFreelanceQuery = 'UPDATE freelance SET discription = ?, categories = ? WHERE id_utilisatuers = ?';
+      db.query(updateFreelanceQuery, [discription, categories, id_utilisateurs], (error, results) => {
         if (error) {
           console.error('Erreur lors de la mise à jour des données freelance', error);
           return res.render('complement', {
@@ -239,7 +288,8 @@ exports.modifier = (req, res, next) => {
           });
         }
 
-        db.query('SELECT * FROM freelance WHERE id_utilisateurs = ?', [id_utilisateurs], (error, results) => {
+        const selectFreelanceQuery = 'SELECT * FROM freelance WHERE id_utilisatuers = ?';
+        db.query(selectFreelanceQuery, [id_utilisateurs], (error, results) => {
           if (error) {
             console.error('Erreur lors de la récupération des données freelance', error);
             return res.render('complement', {
@@ -250,7 +300,8 @@ exports.modifier = (req, res, next) => {
           const id_freelance = results[0].id;
           const values = tagsArray.map(tag => [tag]);
 
-          db.query('UPDATE competance SET nom = ? WHERE id_freelance = ?', [values, id_freelance], (error, results) => {
+          const updateCompetenceQuery = 'UPDATE competance SET nom = ? WHERE id_freelance = ?';
+          db.query(updateCompetenceQuery, [values, id_freelance], (error, results) => {
             if (error) {
               console.error('Erreur lors de la mise à jour des compétences', error);
               return res.render('complement', {
@@ -258,7 +309,7 @@ exports.modifier = (req, res, next) => {
               });
             }
 
-            return res.status(200).redirect("/profile");
+            return res.status(200).redirect("/parametre");
           });
         });
       });
@@ -267,35 +318,6 @@ exports.modifier = (req, res, next) => {
 };
 
 
-/* exports.isLoggedIn = async (req, res, next) => {
-
-   if (req.cookies.acces) {
-     try {
-       const decode = await promisify(jwt.verify)(
-         req.cookies.acces,
-         process.env.JWT_SECRET
-       );
-
-       db.query(
-         "select * from utilisateurs where id=?",
-         [decode.id],
-         (err, results) => {
-
-           if (!results) {
-             return next();
-           }
-           req.utilisateurs = results[0];
-           return next();
-         }
-       );
-     } catch (error) {
-       console.log(error);
-       return next();
-     }
-   } else {
-     next();
-   }
- };*/
 
 exports.logout = async (req, res, next) => {
   req.session.destroy();

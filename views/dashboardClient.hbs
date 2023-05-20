@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/styles/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuniWork</title>
+</head>
+
+<body>
+    {{> navbarClient}}
+    <div class="flex flex-row h-auto justify-center items-center mt-7 ">
+        <div class=" border shadow rounded-lg w-1/4 ">
+
+            <form action="">
+                <h1 class=" px-4 my-5 text-2xl ">Filters</h1>
+
+                <div class="px-4 my-5">
+                    <h1>Type de projet <span style="color:red;"> *</span></h1>
+                    <div class="flex flex-col">
+                        <div class="my-3">
+                            <input type="checkbox" name="" id="">
+                            <label for="">Taux horaire</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <label for="">Prix ​​fixe</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 my-5">
+                    <h1>Prix ​​fixe <span style="color:red;"> *</span></h1>
+                    <div class="flex flex-col  ">
+                        <div class=" my-auto">
+                            <label for="" class="flex my-2">Min</label>
+                            <div class=" lg:relative flex   my-2 items-center focus-within:text-gray-500">
+                                <i class='bx bx-dollar absolute mt-1 px-2 pointer-events-none text-blue-700'> </i>
+                                <input type="text" class="px-8  h-8 rounded-lg w-52" placeholder="0 dinar">
+                            </div>
+                        </div>
+                        <div class=" ">
+                            <label for="" class="flex my-2">Max</label>
+                            <div class=" lg:relative flex   my-2 items-center focus-within:text-gray-500">
+                                <i class='bx bx-dollar absolute mt-1 px-2 pointer-events-none text-blue-700'> </i>
+                                <input type="text" class="px-8  h-8 rounded-lg w-52" placeholder="1000 dinars +">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="px-4 my-5">
+                    <h1>Taux horaire <span style="color:red;"> *</span></h1>
+                    <div class="flex flex-col  ">
+                        <div class=" my-auto">
+                            <label for="" class="flex my-2">Min</label>
+                            <div class=" lg:relative flex   my-2 items-center focus-within:text-gray-500">
+                                <i class='bx bx-dollar absolute mt-1 px-2 pointer-events-none text-blue-700'> </i>
+                                <input type="text" class="px-8  h-8 rounded-lg w-52" placeholder="0 dinar">
+                            </div>
+                        </div>
+                        <div class=" ">
+                            <label for="" class="flex my-2">Max</label>
+                            <div class=" lg:relative flex   my-2 items-center focus-within:text-gray-500">
+                                <i class='bx bx-dollar absolute mt-1 px-2 pointer-events-none text-blue-700'> </i>
+                                <input type="text" class="px-8  h-8 rounded-lg w-52" placeholder="1000 dinars +">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="px-4 my-5">
+                    <h1>Compétences</h1>
+                    <div class=" lg:relative flex   my-2 items-center focus-within:text-gray-500">
+                        <i class='bx bx-search-alt-2 absolute mt-1 px-2 pointer-events-none text-blue-700'> </i>
+                        <input type="text" class="px-8  h-8 rounded-lg w-52" placeholder="recherche">
+                    </div>
+                    <div class="my-3">
+                        <input type="checkbox" name="" id="" class=" rounded">
+                        <label for="">Html</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="w-2/4">
+               <div class="grid grid-cols-1  lg:grid-cols-3 gap-4 lg:gap-8">
+                {{#each freelances}}
+            <div class="p-4  rounded-md block">
+
+
+              <div
+                class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="/profile/{{id}}" class=" w-24  h-5" >
+                  <img class="p-8 rounded-t-lg "  src="/uploads/{{image_url}}" alt="profile image" />
+                </a>
+                <div class="px-5 pb-5">
+                  <a href="#">
+                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">{{nom}}  {{prenom}} </h5>
+                    <h5 class="text-xl font-semibold tracking-tight text-gray-700 ">{{categories}}</h5>
+                  </a>
+
+                  <div class="flex items-center justify-between">
+                    
+                    <a href="/profile/{{id}}"
+                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> voir </a>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+              {{/each}}
+
+
+
+            
+          </div>
+        </div>
+    </div>
+ {{> footer}}
+</body>
+
+</html>

@@ -20,14 +20,15 @@
     <h1 class=" text-4xl font-extrabold">Vos coordonnées : </h1>
   </div>
   <div class="container mx-auto mb-24 w-1/2 bg-white py-24 px-12 rounded-xl shadow-md">
-    <form action="/modifier" method="post" class="w-full max-w-sm mx-auto p-8 rounded-md ">
+    <form action="/modifier" method="post" enctype="multipart/form-data" class="w-full max-w-sm mx-auto p-8 rounded-md ">
   <input type="text" hidden id="id_utilisateurs" name="id_utilisateurs" value="{{utilisateurs.id}}">
+  
       <div class=" mb-4">
         <div class="mb-3 h-6 text-xs font-bold uppercase leading-8 text-gray-600">Inserer images</div>
 
         <label class="block">
           <span class="sr-only">Choisir profile image</span>
-          <input type="file" name="image_url" id="image_url" 
+          <input type="file" name="image_url" id="image_url" value="{{utilisateurs.image_url}}"
             class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100" />
         </label>
       </div>
@@ -126,6 +127,7 @@
         type="submit" disabled>Modifier mes identifiants</button>
     </form>
   </div>
+
   {{> footer}}
 </body>
 
