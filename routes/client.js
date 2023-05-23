@@ -162,7 +162,7 @@ router.get('/profile/:freelance_id', (req, res) => {
             return;
           }else {
             const id_projet = result[0].id;
-            const sql = ` SELECT utilisateurs.image_url, utilisateurs.nom, utilisateurs.prenom, offer.prix , offer.description , offer.date_offer  
+            const sql = ` SELECT utilisateurs.id, utilisateurs.image_url, utilisateurs.nom, utilisateurs.prenom, offer.prix , offer.description , offer.date_offer  
             FROM utilisateurs
             INNER JOIN freelance ON utilisateurs.id = freelance.id_utilisatuers
             INNER JOIN offer ON freelance.id = offer.id_freelance 
