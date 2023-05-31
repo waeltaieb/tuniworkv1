@@ -5,14 +5,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="./styles/style.css">
-    <link  href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet"  type="text/css" />
+    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TuniWork</title>
 </head>
 
 <body>
-
-<div class="p-28 ml-32 w-3/4 items-center justify-center">
+    <div class="p-28 ml-32 w-3/4 items-center justify-center">
         <div class="mx-4 p-4">
             <div class="flex items-center">
                 <div class="relative flex items-center text-blue-600">
@@ -48,67 +47,41 @@
             </div>
         </div>
         <div class="mt-8 p-4">
-            <form action="/parametre" method="post" enctype="multipart/form-data">
+            <form action="/parametreClient" method="post" >
                 <div>
 
                     <input type="text" hidden id="id_utilisatuers" name="id_utilisatuers" value="{{utilisateurs.id}}">
-                    <div class="mx-2 mb-3 h-6 text-xs font-bold uppercase leading-8 text-gray-600">Inserer images</div>
 
-                    <label class="block">
-                        <span class="sr-only">Choisir profile image</span>
-                        <input type="file" name="image_url" id="image_url"
-                            class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100" />
-                    </label>
+
+
                     <div class="flex flex-col md:flex-row">
                         <div class="svelte-1l8159u mx-2 w-full flex-1">
-                            <div class="mt-3 h-6 text-xs font-bold uppercase leading-8 text-gray-600">Discription de
-                                profile
+                            <div class="mt-3 h-6 text-xs font-bold uppercase leading-8 text-gray-600"> matricule fiscale
                             </div>
                             <div class="svelte-1l8159u my-2 flex rounded border border-gray-200 bg-white p-1">
-                              <textarea  class="w-full appearance-none p-1 px-2 text-gray-800  outline-none" name="discription" id="discription" cols="30" rows="10"></textarea>
-                                
+                                <input class="w-full appearance-none p-1 px-2 text-gray-800  outline-none"
+                                    name="matricule" id="matricule" type="text">
+
+
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-col md:flex-row">
                         <div class="svelte-1l8159u mx-2 w-full flex-1">
-                            <div class="mt-3 h-6 text-xs font-bold uppercase leading-8 text-gray-600">Choisir votre
-                                categorie</div>
+                            <div class="mt-3 h-6 text-xs font-bold uppercase leading-8 text-gray-600"> secteur
+                            </div>
+                            <div class="svelte-1l8159u my-2 flex rounded border border-gray-200 bg-white p-1">
+                                <input class="w-full appearance-none p-1 px-2 text-gray-800  outline-none"
+                                    name="secteur" id="secteur" type="text">
 
-                            <select id="categories" name="categories"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
-                                <option selected>Categorie</option>
-                                <option value="Technologie Informatique">Technologie Informatique</option>
-                                <option value="Developpeur fullstack">Developpeur fullstack</option>
-                                <option value="Developpeur BackEnd">Developpeur BackEnd</option>
-                                <option value="Developpeur frontend">Developpeur frontend</option>
-                                <option value=" Designe web">designe web</option>
-                            </select>
+
+                            </div>
                         </div>
                     </div>
-                    <div class="flex flex-col md:flex-row">
-                        <div class="svelte-1l8159u mx-2 w-full flex-1">
-                            <label for="Tags" class="block mt-3 h-6 text-xs font-bold uppercase leading-8 text-gray-600">Compétences</label>
-                            <input type="text"
-                                class="w-full px-4 py-6 text-sm border text-gray-800 border-gray-800 rounded outline-none" name="tags" id="tags"
-                                value="" autofocus />
-
-                        </div>
-                    </div>
-
-                    <script src="https://unpkg.com/@yaireo/tagify"></script>
-                    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-                    <script>
-                        // The DOM element you wish to replace with Tagify
-                        var input = document.querySelector('input[name=tags]');
-                        // initialize Tagify on the above input node reference
-                        new Tagify(input);
-                    </script>
-
                 </div>
                 <div class="mt-4 flex p-2">
                     <div class="flex flex-auto flex-row-reverse justify-center">
-                        <button
+                        <button type="submit"
                             class="ml-2 flex cursor-pointer justify-center rounded border border-teal-600 bg-blue-600 px-4 py-2 text-base font-bold text-teal-100 transition duration-200 ease-in-out hover:scale-110 hover:bg-teal-600 focus:outline-none">Suivant</button>
                     </div>
                 </div>

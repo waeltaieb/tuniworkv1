@@ -23,29 +23,30 @@
         <a href="/listMission" class="text-l text-white hover:text-cyan-500 duration-500"> listes Mission</a>
       </li>
       <li class="mx-4 my-6 md:my-0">
-        <a href="/ajoutMission" class="text-l text-white hover:text-cyan-500 duration-500"> Ajout Mission</a>
+        <a href="/ajoutMission" class="text-l text-white hover:text-cyan-500 duration-500"> Publier Mission</a>
       </li>
       <li class="mx-4 my-6 md:my-0">
-        <a href="/client" class="text-l text-white hover:text-cyan-500 duration-500">Mission en cour</a>
+        <a href="/missionEncour" class="text-l text-white hover:text-cyan-500 duration-500">Mission en cour</a>
       </li>
       <li class="mx-4 my-6 md:my-0">
-        <a href="/journal" class="text-l text-white hover:text-cyan-500 duration-500">Mission terminer</a>
+        <a href="/missionTerminer" class="text-l text-white hover:text-cyan-500 duration-500">Mission terminer</a>
       </li>
       <li class="mx-4 my-6 md:my-0">
-        <a href="messagerie" class="text-l text-white hover:text-cyan-500 duration-500">Messagerie</a>
+        <a href="/messagerie" class="text-l text-white hover:text-cyan-500 duration-500">Messagerie</a>
       </li>
 <div x-data="{ open: false }" class="  mx-4 my-6 md:my-0   flex justify-center items-center">
       <div @click="open = !open" class="relative border-b-4 border-transparent py-3" :class="{'border-indigo-700 transform transition duration-300 ': open}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
-        <div class="flex justify-center items-center space-x-3 cursor-pointer">
+        <div class="flex justify-center items-center  mr-24 space-x-3  cursor-pointer">
           <div class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
             <img src="/uploads/{{utilisateurs.image_url}}" alt="" class="w-full h-full object-cover">
           </div>
-          <div class="font-semibold dark:text-white text-gray-900 text-lg">
-            <div class="cursor-pointer">{{utilisateurs.nom}} {{utilisateurs.prenom}}</div>
-          </div>
+
         </div>
         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
-          <ul class="space-y-3 dark:text-white">
+          <ul class=" space-y-3 dark:text-white">
+            <li class="font-medium">
+               <div class="cursor-pointer">{{utilisateurs.nom}} {{utilisateurs.prenom}}</div>
+            </li>
             <li class="font-medium">
               <a href="profile" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
                 <div class="mr-3">

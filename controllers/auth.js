@@ -45,10 +45,10 @@ exports.register = async (req, res) => {
             message: 'Erreur serveur, veuillez réessayer ultérieurement',
           });
         } else {
-          db.query('SELECT * FROM utilisateurs where email = ? ', [email], (error, results) => {
+          db.query('SELECT * FROM utilisateurs where email = ? ', [email], (error, result) => {
             if (error) throw error;
             return res.render('complement', {
-              utilisateurs: results[0]
+              utilisateurs: result[0]
             });
           });
 
@@ -61,7 +61,7 @@ exports.register = async (req, res) => {
 exports.registerClient = async (req, res) => {
   const { nom, prenom, pseudo, email, mot_de_passe, confirm_mot_de_passe, date_nai } = req.body;
   const type = "client";
-  db.query( 'SELECT * FROM utilisateurs WHERE email = ?', [email], async (error, results) => {
+  db.query('SELECT * FROM utilisateurs WHERE email = ?', [email], async (error, results) => {
     if (error) {
       console.log(error);
       return res.render('register', {
@@ -91,7 +91,12 @@ exports.registerClient = async (req, res) => {
             message: 'Erreur serveur, veuillez réessayer ultérieurement',
           });
         } else {
-          return res.render('connexion');
+          db.query('SELECT * FROM utilisateurs where email = ? ', [email], (error, result) => {
+            if (error) throw error;
+            return res.render('complementClient', {
+              utilisateurs: result[0]
+            });
+          });
 
         }
       }
@@ -111,7 +116,7 @@ exports.parametre = (req, res) => {
       callback(null, temp_file_name + '-' + Date.now() + '.' + temp_file_extension);
     }
   });
-   
+
   const upload = multer({ storage: storage }).single('image_url');
 
   upload(req, res, (error) => {
@@ -170,6 +175,34 @@ exports.parametre = (req, res) => {
   });
 };
 
+exports.parametreClient = (req, res) => {
+
+
+  const { id_utilisatuers, secteur, matricule } = req.body;
+  const image_url = 'logoClient.jpg'
+
+  const sql = "UPDATE utilisateurs SET image_url = ? WHERE id = ?";
+  db.query(sql, [image_url, id_utilisatuers], (error, results) => {
+    if (error) {
+      console.log(error);
+      return res.render('complementClient', {
+        message: 'Erreur serveur, veuillez réessayer ultérieurement',
+      });
+    } else {
+      db.query('INSERT INTO client SET ?', { id_utilisateurs: id_utilisatuers, secteur: secteur, matricule_fiscal: matricule }, (error, results) => {
+        if (error) {
+          console.log(error);
+          return res.render('complementClient', {
+            message: 'Erreur serveur, veuillez réessayer ultérieurement',
+          });
+        } else {
+          return res.render('connexion');
+        }
+      });
+    }
+  });
+}
+
 
 
 exports.login = (req, res, next) => {
@@ -201,31 +234,32 @@ exports.login = (req, res, next) => {
           } else {
             if (result[0].type_compte == "freelance") {
               req.session.user = result[0];
+              id_utilisateurs = result[0].id;
               db.query(
                 "select * from freelance where id_utilisatuers=?",
                 [result[0].id],
                 (errors, results) => {
-                  if(result.length > 0){
+                  if (result.length > 0) {
                     freelance = results[0];
                     db.query(
                       "select * from competance where id_freelance=?",
                       [results[0].id],
                       (err, reslt) => {
                         comptance = reslt;
-                        
+
                         res.status(200).redirect("/dashboard");
                       }
                     );
                   }
-                  
-                  
+
+
                 }
               );
-              
 
-              
-              
-            } else  if (result[0].type_compte == "client")  {
+
+
+
+            } else if (result[0].type_compte == "client") {
 
               req.session.userclient = result[0];
               res.status(200).redirect("/dashboardClient");
@@ -261,59 +295,130 @@ exports.modifier = (req, res, next) => {
   upload(req, res, (error) => {
     if (error) {
       console.error('Erreur lors du téléchargement de l\'image', error);
-      return res.render('complement', {
+      return res.render('param_freelance', {
         message: 'Erreur lors du téléchargement de l\'image',
       });
     }
 
-    const image_url = req.file. filename;
-    const { id_utilisateurs, discription, categories, tags, nom, prenom } = req.body;
-    const tagsArray = tags.split(',').map(tag => tag.replace(/[\[\]":{}]|\bvalue\b/g, '').trim());
+    // Check if a file was uploaded
+    if (!req.file) {
+      const { id_utilisateurs, discription, categories, tags, nom, prenom,date_nai } = req.body;
+      const tagsArray = tags.split(',').map(tag => tag.replace(/[\[\]":{}]|\bvalue\b/g, '').trim());
 
-    const sql = "UPDATE utilisateurs SET image_url = ?, nom = ?, prenom = ? WHERE id = ?";
-    db.query(sql, [image_url, nom, prenom, id_utilisateurs], (error, results) => {
-      if (error) {
-        console.error('Erreur lors de la mise à jour des données utilisateurs', error);
-        return res.render('complement', {
-          message: 'Erreur serveur, veuillez réessayer ultérieurement',
-        });
-      }
-
-      const updateFreelanceQuery = 'UPDATE freelance SET discription = ?, categories = ? WHERE id_utilisatuers = ?';
-      db.query(updateFreelanceQuery, [discription, categories, id_utilisateurs], (error, results) => {
+      const sql = "UPDATE utilisateurs SET  nom = ?, prenom = ?, date_nai = ? WHERE id = ?";
+      db.query(sql, [nom, prenom, date_nai, id_utilisateurs], (error, results) => {
         if (error) {
-          console.error('Erreur lors de la mise à jour des données freelance', error);
+          console.error('Erreur lors de la mise à jour des données utilisateurs', error);
+          return res.render('param_freelance', {
+            message: 'Erreur serveur, veuillez réessayer ultérieurement',
+          });
+        }
+
+        const updateFreelanceQuery = 'UPDATE freelance SET discription = ?, categories = ? WHERE id_utilisatuers = ?';
+        db.query(updateFreelanceQuery, [discription, categories, id_utilisateurs], (error, results) => {
+          if (error) {
+            console.error('Erreur lors de la mise à jour des données freelance', error);
+            return res.render('param_freelance', {
+              message: 'Erreur serveur, veuillez réessayer ultérieurement',
+            });
+          }
+
+          const selectFreelanceQuery = 'SELECT * FROM freelance WHERE id_utilisatuers = ?';
+          db.query(selectFreelanceQuery, [id_utilisateurs], (error, results) => {
+            if (error) {
+              console.error('Erreur lors de la récupération des données freelance', error);
+              return res.render('param_freelance', {
+                message: 'Erreur serveur, veuillez réessayer ultérieurement',
+              });
+            }
+
+            const id_freelance = results[0].id;
+            const values = tagsArray.map(tag => [id_freelance, tag]);
+
+            const deleteCompetenceQuery = 'DELETE FROM competance  WHERE id_freelance = ?';
+            db.query(deleteCompetenceQuery, [id_freelance], (error, results) => {
+              if (error) {
+                console.error('Erreur lors de la mise à jour des compétences', error);
+                return res.render('param_freelance', {
+                  message: 'Erreur serveur, veuillez réessayer ultérieurement',
+                });
+              } else {
+                const insertCompetenceQuery = 'INSERT INTO competance (id_freelance, nom) VALUES ?';
+                db.query(insertCompetenceQuery, [values], (error, results) => {
+                  if (error) {
+                    console.error('Erreur lors de la mise à jour des compétences', error);
+                    return res.render('param_freelance', {
+                      message: 'Erreur serveur, veuillez réessayer ultérieurement',
+                    });
+                  } else {
+                    return res.status(200).redirect("/profile");
+                  }
+                });
+              }
+            });
+          });
+        });
+      });
+    } else {
+      const image_url = req.file.filename;
+      const { id_utilisateurs, discription, categories, tags, nom, prenom,date_nai } = req.body;
+      const tagsArray = tags.split(',').map(tag => tag.replace(/[\[\]":{}]|\bvalue\b/g, '').trim());
+
+      const sql = "UPDATE utilisateurs SET image_url = ?, nom = ?, prenom = ? date_nai = ? WHERE id = ?";
+      db.query(sql, [image_url, nom, prenom, date_nai, id_utilisateurs], (error, results) => {
+        if (error) {
+          console.error('Erreur lors de la mise à jour des données utilisateurs', error);
           return res.render('complement', {
             message: 'Erreur serveur, veuillez réessayer ultérieurement',
           });
         }
 
-        const selectFreelanceQuery = 'SELECT * FROM freelance WHERE id_utilisatuers = ?';
-        db.query(selectFreelanceQuery, [id_utilisateurs], (error, results) => {
+        const updateFreelanceQuery = 'UPDATE freelance SET discription = ?, categories = ? WHERE id_utilisatuers = ?';
+        db.query(updateFreelanceQuery, [discription, categories, id_utilisateurs], (error, results) => {
           if (error) {
-            console.error('Erreur lors de la récupération des données freelance', error);
+            console.error('Erreur lors de la mise à jour des données freelance', error);
             return res.render('complement', {
               message: 'Erreur serveur, veuillez réessayer ultérieurement',
             });
           }
 
-          const id_freelance = results[0].id;
-          const values = tagsArray.map(tag => [tag]);
-
-          const updateCompetenceQuery = 'UPDATE competance SET nom = ? WHERE id_freelance = ?';
-          db.query(updateCompetenceQuery, [values, id_freelance], (error, results) => {
+          const selectFreelanceQuery = 'SELECT * FROM freelance WHERE id_utilisatuers = ?';
+          db.query(selectFreelanceQuery, [id_utilisateurs], (error, results) => {
             if (error) {
-              console.error('Erreur lors de la mise à jour des compétences', error);
+              console.error('Erreur lors de la récupération des données freelance', error);
               return res.render('complement', {
                 message: 'Erreur serveur, veuillez réessayer ultérieurement',
               });
             }
 
-            return res.status(200).redirect("/parametre");
+            const id_freelance = results[0].id;
+            const values = tagsArray.map(tag => [id_freelance, tag]);
+
+            const deleteCompetenceQuery = 'DELETE FROM competance  WHERE id_freelance = ?';
+            db.query(deleteCompetenceQuery, [id_freelance], (error, results) => {
+              if (error) {
+                console.error('Erreur lors de la mise à jour des compétences', error);
+                return res.render('param_freelance', {
+                  message: 'Erreur serveur, veuillez réessayer ultérieurement',
+                });
+              } else {
+                const insertCompetenceQuery = 'INSERT INTO competance (id_freelance, nom) VALUES ?';
+                db.query(insertCompetenceQuery, [values], (error, results) => {
+                  if (error) {
+                    console.error('Erreur lors de la mise à jour des compétences', error);
+                    return res.render('param_freelance', {
+                      message: 'Erreur serveur, veuillez réessayer ultérieurement',
+                    });
+                  } else {
+                    return res.status(200).redirect("/profile");
+                  }
+                });
+              }
+            });
           });
         });
       });
-    });
+    }
   });
 };
 

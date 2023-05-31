@@ -61,7 +61,7 @@ router.get('/profile/:freelance_id', (req, res) => {
 
  });
 
- router.get('/listMission',(req,res) => {
+ router.get('/missionEncour',(req,res) => {
   if (req.session.userclient) {
     const id = req.session.userclient.id;
     db.query('SELECT * FROM client WHERE id_utilisateurs = ?', [id], function (error, results, fields) {
@@ -73,7 +73,7 @@ router.get('/profile/:freelance_id', (req, res) => {
           if(error){
             throw error;
           }else{
-            res.render("listeMission", {
+            res.render("missionCour", {
               utilisateurs: req.session.userclient,
               projet:result,
             });
@@ -88,7 +88,75 @@ router.get('/profile/:freelance_id', (req, res) => {
   }
 
  });
+ router.get('/listMission',(req,res) => {
+  if (req.session.userclient) {
+    const id = req.session.userclient.id;
+    db.query('SELECT * FROM client WHERE id_utilisateurs = ?', [id], function (error, results, fields) {
+      if(error){
+        throw error;
+      }else{
+        const id_client = results[0].id;
+        db.query('SELECT * FROM projet WHERE id_client = ? order by date_publier DESC', [id_client] , function (error, result, fields) {
+          if(error){
+            throw error;
+          }else{
+            
+            const query = `
+            SELECT  projet.id, offer.date_offer
+            FROM projet
+            INNER JOIN offer ON projet.id = offer.id_projet
+            WHERE projet.id_client = ? order by offer.date_offer DESC
+          `;
+            db.query(query, [id_client] , function (error, resultsoffer, fields) {
+              if(error){
+                throw error;
+              }else{
+                res.render("listeMission", {
+                  utilisateurs: req.session.userclient,
+                  projet:result,
+                  notification:resultsoffer
+                });
+            
+              }
+            });
+        
+          }
+        });
+      }
+    });
+    
+  } else {
+    res.redirect("/connexion");
+  }
 
+ });
+ router.get('/missionTerminer',(req,res) => {
+  if (req.session.userclient) {
+    const id = req.session.userclient.id;
+    db.query('SELECT * FROM client WHERE id_utilisateurs = ?', [id], function (error, results, fields) {
+      if(error){
+        throw error;
+      }else{
+        const id_client = results[0].id;
+        db.query('SELECT * FROM projet WHERE id_client = ?', [id_client] , function (error, result, fields) {
+          if(error){
+            throw error;
+          }else{
+            res.render("missionTerminer", {
+              utilisateurs: req.session.userclient,
+              projet:result,
+            });
+        
+          }
+        });
+      }
+    });
+    
+  } else {
+    res.redirect("/connexion");
+  }
+
+ });
  router.get('/supprimer/:id', (req,res) => {
   if (req.session.userclient) {
     const id = req.session.userclient.id;
@@ -193,12 +261,7 @@ router.get('/profile/:freelance_id', (req, res) => {
 
 router.post('/modifiermission', clientController.modifiermission);
 router.post('/ajoutmission', clientController.ajoutmission);
-router.post('/register', authController.register);
-router.post('/registerClient', authController.registerClient);
-router.post('/parametre', authController.parametre);
-router.post('/login', authController.login);
-router.post('/modifier', authController.modifier);
-router.get("/logout", authController.logout);
+
 
 
 module.exports = router;

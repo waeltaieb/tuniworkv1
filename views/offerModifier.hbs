@@ -16,7 +16,7 @@
     <div class="mx-auto grid md:p-1 lg:p-20 w-7xl grid-cols-12 gap-4 bg-zinc-50">
         <div class="header col-span-12 rounded-lg border-y-4  border-blue-300  py-8">
             <div class=" ml-10 flex w-11/12  ">
-                <h1 class="  font-extrabold  ">Proposer voter offer </h1>
+                <h1 class="  font-extrabold  ">Modfier voter offer </h1>
             </div>
 
         </div>
@@ -24,7 +24,7 @@
             class="col-span-12 rounded-lg border border-gray-400 bg-gradient-to-r from-sky-300 to-blue-300 p-4 sm:col-span-4">
             <a class=" cursor-pointer text-gray-600" href="/">Retour</a>
 
-            <form class="" action="/ajoutOffer" method="POST" enctype="multipart/form-data" >
+            <form class="" action="/modifierOffer" method="POST">
                 <input type="text" name="id_projet" id="id_projet" hidden value="{{projet.id}}">
                 <input type="text" name="id_utilisateur" id="id_utilisateur" hidden value="{{utilisateurs.id}}">
                 <div class="mb-4">
@@ -33,14 +33,14 @@
                     </label>
                     <textarea name="description" id="description" cols="30" rows="10"
                         placeholder="ecrire votre description de l'offer "
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"> {{offer.description}} </textarea>
                 </div>
 
                 <div class="mb-4">
                     <label for="montant" class="mb-3 block text-base font-medium text-[#07074D]">
                         Montant d'offer en DT:
                     </label>
-                    <input type="number" name="montant" id="montant" placeholder="856 DT"
+                    <input type="number" name="montant" id="montant"  value="{{offer.prix}}"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
                 <div class="mb-6 pt-4">
@@ -49,8 +49,8 @@
                     </label>
 
                     <div class="mb-8 ">
-                        <input type="file" name="pdfFile" id="pdfFile" class="sr-only" />
-                        <label for="pdfFile"
+                        <input type="file" name="file" id="file" class="  sr-only" />
+                        <label for="file"
                             class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed cursor-pointer bg-slate-50 border-[#e0e0e0] p-12 text-center">
                             <div>
                                 <span class="mb-2 block text-xl font-semibold text-[#07074D]">
@@ -126,33 +126,31 @@
                     </div>
                 </div>
                 <div class="w-full border border-gray-500 p-4">
-                    {{#each offer}}
+                    
                     <div class="block w-full items-center justify-center rounded-md pl-8">
                         <h1 class="cursor-pointer text-lg font-semibold text-gray-700 hover:underline">Prix de l'offer :
-                            <span> {{prix}} dt</span></h1>
+                            <span> {{offer.prix}} dt</span></h1>
                         <div class="mt-2 flex"></div>
                         <h1 class="cursor-pointer text-lg font-semibold text-gray-700 hover:underline">Description de
                             l'offer :</h1>
-                        <p class="text-md mt-4 text-gray-600">{{description}}</p>
+                        <p class="text-md mt-4 text-gray-600">{{offer.description}}</p>
                         <div class="flex w-full items-center justify-between border-b pb-3">
                             <div class="flex items-center space-x-3">
                                 <div class="mt-4 flex items-center space-x-4 py-6">
                                     <div class="flex">
                                         <div class="flex text-sm font-semibold"> • <span
-                                                class="font-normal"> {{ formatDate date_offer " YYYY-MM-DD hh:mm"}}
+                                                class="font-normal"> {{ formatDate offer.date_offer " YYYY-MM-DD hh:mm"}}
                                             </span></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-8">
-                                <a href="/modifierOffer/{{id}}"
-                                    class="flex  h-6 w-24 cursor-pointer items-center justify-center space-x-7 rounded-full bg-green-400 p-6 text-sm text-white shadow-lg">Modifier</a>
-                                <a href=""
-                                    class="flex  h-6 w-24cursor-pointer items-center justify-center rounded-full bg-yellow-400 p-6 text-sm text-white shadow-lg">Supprimer</a>
+                                <h1
+                                    class="flex  h-6 w-24cursor-pointer items-center justify-center rounded-full bg-yellow-400 p-6 text-sm text-white shadow-lg">Offer a modifier</h1>
                             </div>
                         </div>
                     </div>
-                    {{/each }}
+                    
                 </div>
             </div>
 

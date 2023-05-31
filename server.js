@@ -12,8 +12,11 @@ const Handlebars = require('handlebars');
 const dateFormat = require('handlebars-dateformat');
 
 
-
-Handlebars.registerHelper('dateFormat', dateFormat);
+const moment = require('moment');
+Handlebars.registerHelper('formatDate', function(date, format) {
+    // Use the moment library to format the date
+    return moment(date).format(format);
+  });
 
 dotenv.config({ path: "./.env" });
 app.use(session({

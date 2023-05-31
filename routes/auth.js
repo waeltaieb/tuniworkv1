@@ -12,22 +12,30 @@ const db = mysql.createConnection({
 
 router.get("/dashboard", (req, res) => {
     if (req.session.user) {
-      const type = "en cour";
-      const query = `
-        SELECT  utilisateurs.nom, utilisateurs.prenom  , projet.id , projet.titre  , projet.description  , projet.prix  , projet.duree
-        FROM utilisateurs
-        INNER JOIN client ON utilisateurs.id = client.id_utilisateurs
-        INNER JOIN projet ON client.id = projet.id_client
-        WHERE projet.statut_projet = ?
-      `;
-      db.query(query, [type], function (error, results, fields) {
-        if (error) {throw error;}
+      const id = id_utilisateurs;
+      const sql1 = `SELECT * FROM utilisateurs WHERE id = ?`;
+      db.query(sql1, [id], (error, resultUtilisateurs) => {
+        if (error) throw error;
         else {
-          res.render("freedashbord", {
-             utilisateurs: req.session.user,
-            projet:results });
+          const type = "en cour";
+          const query = `
+            SELECT  utilisateurs.nom, utilisateurs.prenom  , projet.id , projet.titre  , projet.description  , projet.prix  , projet.duree, projet.date_publier
+            FROM utilisateurs
+            INNER JOIN client ON utilisateurs.id = client.id_utilisateurs
+            INNER JOIN projet ON client.id = projet.id_client
+            WHERE projet.statut_projet = ? order by date_publier DESC
+          `;
+          db.query(query, [type], function (error, results, fields) {
+            if (error) {throw error;}
+            else {
+              res.render("freedashbord", {
+                 utilisateurs: resultUtilisateurs[0],
+                projet:results });
+            }
+          });
         }
       });
+
       
     } else {
       res.redirect("/connexion");
@@ -102,6 +110,7 @@ router.get("/dashboard", (req, res) => {
 
 router.post('/register', authController.register);
 router.post('/registerClient', authController.registerClient);
+router.post('/parametreClient', authController.parametreClient);
 router.post('/parametre', authController.parametre);
 router.post('/login', authController.login);
 router.post('/modifier', authController.modifier);
