@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    {{> navbarClient}}
+    {{> navbar}}
 <div class="mx-auto grid md:p-1 lg:p-20  w-7xl grid-cols-12 gap-4 bg-zinc-50">
   <div class="header col-span-12 rounded-lg border-y-4  border-blue-300  py-8">
     <h1 class="ml-32 font-extrabold " >Liste de mission deja en cour </h1>
@@ -78,7 +78,7 @@
                                     <div class="text-xs text-neutral-500">{{formatDate date_publier " YYYY-MM-DD hh:mm"}}</div>
                                 </div>
                                 <div class="flex items-center space-x-8">
-                                    <div  class="rounded-2xl border  bg-yellow-500 px-3 py-1 text-l font-semibold">Mission en cour</div>
+                                    <div  class="rounded-2xl border  bg-green-500 px-3 py-1 text-l font-semibold">Mission Terminer</div>
                                 </div>
                             </div>
 
@@ -102,7 +102,7 @@
                                        
                                 </div>
                                 <div class="flex items-center space-x-8">
-                                    <a href="/voirofferMission/{{id}}" class="rounded-2xl border text-white  bg-blue-400 px-3 py-1 text-l font-semibold">voir l'offer</a>
+                                    <a href="/offerTerminee/{{id}}" class="rounded-2xl border text-white  bg-blue-400 px-3 py-1 text-l font-semibold">voir l'offer</a>
                                     </div>
                             </div>
                         </div>

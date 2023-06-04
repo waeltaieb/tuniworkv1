@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    {{> navbarClient}}
+    {{> navbar}}
  <div class="w-7xl mx-auto grid grid-cols-12 gap-4 bg-zinc-50 md:p-1 lg:p-20">
     <div class="header col-span-12 rounded-lg border-y-4 border-blue-300 py-8">
       <div class="ml-10 flex w-11/12">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="col-span-12 rounded-lg border border-gray-400 bg-gradient-to-r from-sky-300 to-blue-300 p-4 sm:col-span-4">
-        <a class="cursor-pointer text-2xl text-gray-600" href="/missionEncour">Retour</a>
+        <a class="cursor-pointer text-2xl text-gray-600" href="/missiontermine">Retour</a>
     </div>
     <div class="bg- col-span-12 rounded-lg border border-gray-500 p-2 sm:col-span-8">
       
@@ -35,8 +35,8 @@
                     <div class="text-xs text-neutral-500">{{ formatDate projet.date_publier " YYYY-MM-DD hh:mm"}}</div>
                   </div>
                   <div class="flex items-center space-x-8">
-                    <a href="/terminer/{{projet.id}}"
-                      class="text-l rounded-2xl border  bg-yellow-500 px-3 py-1 font-semibold">faire Termination</a>
+                    <a href="/modifier/{{projet.id}}"
+                      class="text-l rounded-2xl border  bg-green-500 px-3 py-1 font-semibold"> Termier avec succes</a>
                   </div>
                 </div>
 
@@ -81,10 +81,10 @@
                 <div class="flex items-center space-x-3">
                   <div class="mt-4 flex items-center space-x-4 py-6">
                     <div class="">
-                      <img class="h-12 w-12 rounded-full" src="/uploads/{{offer.image_url}}" alt="" />
+                      <img class="h-12 w-12 rounded-full" src="/uploads/{{utilisateurs.image_url}}" alt="" />
                     </div>
                     <div class="flex">
-                      <div class="flex text-sm font-semibold">{{offer.nom}} {{offer.prenom}} • <span class="font-normal"> {{
+                      <div class="flex text-sm font-semibold">{{utilisateurs.nom}} {{utilisateurs.prenom}} • <span class="font-normal"> {{
                           formatDate offer.date_offer " YYYY-MM-DD hh:mm"}} </span></div>
                     </div>
                   </div>

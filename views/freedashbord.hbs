@@ -16,7 +16,7 @@
     <div class="mx-auto grid md:p-1 lg:p-20  w-7xl grid-cols-12 gap-4 bg-zinc-50">
         <div class="header col-span-12 rounded-lg border-y-4  border-blue-300  py-8">
 
-            <div class="ml-32  flex font-extrabold italic  text-gray-800  text-5xl">
+            <div class="ml-10 flex w-11/12 font-extrabold italic  text-gray-800  text-5xl">
                 <img src="/images/hallo.png" class=" w-8 h-8 mr-3" alt="" srcset="">
                 <h1>Bienvenue <span class=" font-extrabold  text-4xl"> {{utilisateurs.nom}}
                         {{utilisateurs.prenom}}</span> </h1>
@@ -77,6 +77,51 @@
                 <button type="submit"
                     class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium  hover:bg-blue-700 text-white">Chercher</button>
             </form>
+            <details class="bg-white shadow rounded group mt-3 mb-4">
+                <summary class="list-none flex flex-wrap items-center cursor-pointer
+    focus-visible:outline-none focus-visible:ring focus-visible:ring-pink-500
+    rounded group-open:rounded-b-none group-open:z-[1] relative
+    ">
+
+                    <h3 class="flex flex-1 p-4 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <circle cx="18" cy="6" r="3"></circle>
+                            <path
+                                d="M13 6c0-.712.153-1.387.422-2H6c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7.422A4.962 4.962 0 0 1 18 11a5 5 0 0 1-5-5z">
+                            </path>
+                        </svg>Notifications D'offer</h3>
+                    <div class="flex w-10 items-center justify-center">
+                        <div class="border-8 border-transparent border-l-gray-600 ml-2
+        group-open:rotate-90 transition-transform origin-left
+        "></div>
+                    </div>
+                </summary>
+                <div class=" h-80 overflow-auto ">
+                    {{#each notification }}
+                    <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                        <p class="font-bold">Projet Proposée</p>
+                        <p>Un client propose un projet a Vous . <span><a href="">voir plus</a></span></p>
+                    </div>
+                    {{/each }}
+                    {{#each notificationAccept}}
+                    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+                        role="alert">
+                        <div class="flex">
+                            <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+                                </svg></div>
+                            <div>
+                                <p class="font-bold">Offer accepter</p>
+                                <p class="text-sm">votre client accepte votre offer </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each }}
+                </div>
+
+            </details>
         </div>
         <div class="col-span-12 rounded-lg border border-gray-500 bg- p-2 sm:col-span-8">
             {{#each projet}}

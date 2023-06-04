@@ -262,6 +262,7 @@ exports.login = (req, res, next) => {
             } else if (result[0].type_compte == "client") {
 
               req.session.userclient = result[0];
+              id_utilisateurs = result[0].id;
               res.status(200).redirect("/dashboardClient");
 
             } else {

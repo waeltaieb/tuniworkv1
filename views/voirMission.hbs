@@ -2,125 +2,239 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="/styles/style.css">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TuniWork</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/styles/style.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuniWork</title>
 </head>
 
 <body>
-    {{> navbarClient}}
-<div class="w-7xl mx-auto grid grid-cols-12 gap-4 bg-zinc-50 md:p-1 lg:p-20">
-  <div class="header col-span-12 rounded-lg border-y-4 border-blue-300 py-8">
-    <div class="ml-10 flex w-11/12">
-      <h1 class="font-extrabold">Offer proposée</h1>
+  {{> navbarClient}}
+  <div class="w-7xl mx-auto grid grid-cols-12 gap-4 bg-zinc-50 md:p-1 lg:p-20">
+    <div class="header col-span-12 rounded-lg border-y-4 border-blue-300 py-8">
+      <div class="ml-10 flex w-11/12">
+        <h1 class="font-extrabold">Offer proposées</h1>
+      </div>
     </div>
-  </div>
-  <div class="col-span-12 rounded-lg border border-gray-400 bg-gradient-to-r from-sky-300 to-blue-300 p-4 sm:col-span-4">
-    <form action="" method="post">
-      <div class="relative">
-        <div class="absolute ml-2 flex h-full items-center">
-          <svg class="text-primary-gray-dark h-4 w-4 fill-current" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.8898 15.0493L11.8588 11.0182C11.7869 10.9463 11.6932 10.9088 11.5932 10.9088H11.2713C12.3431 9.74952 12.9994 8.20272 12.9994 6.49968C12.9994 2.90923 10.0901 0 6.49968 0C2.90923 0 0 2.90923 0 6.49968C0 10.0901 2.90923 12.9994 6.49968 12.9994C8.20272 12.9994 9.74952 12.3431 10.9088 11.2744V11.5932C10.9088 11.6932 10.9495 11.7869 11.0182 11.8588L15.0493 15.8898C15.1961 16.0367 15.4336 16.0367 15.5805 15.8898L15.8898 15.5805C16.0367 15.4336 16.0367 15.1961 15.8898 15.0493ZM6.49968 11.9994C3.45921 11.9994 0.999951 9.54016 0.999951 6.49968C0.999951 3.45921 3.45921 0.999951 6.49968 0.999951C9.54016 0.999951 11.9994 3.45921 11.9994 6.49968C11.9994 9.54016 9.54016 11.9994 6.49968 11.9994Z"></path>
-          </svg>
+    <div
+      class="col-span-12 rounded-lg border border-gray-400 bg-gradient-to-r from-sky-300 to-blue-300 p-4 sm:col-span-4">
+      <form id="filter" class=" " action="" method="post">
+        <div class="relative">
+          <div class="absolute ml-2 flex h-full items-center">
+            <svg class="text-primary-gray-dark h-4 w-4 fill-current" viewBox="0 0 16 16" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.8898 15.0493L11.8588 11.0182C11.7869 10.9463 11.6932 10.9088 11.5932 10.9088H11.2713C12.3431 9.74952 12.9994 8.20272 12.9994 6.49968C12.9994 2.90923 10.0901 0 6.49968 0C2.90923 0 0 2.90923 0 6.49968C0 10.0901 2.90923 12.9994 6.49968 12.9994C8.20272 12.9994 9.74952 12.3431 10.9088 11.2744V11.5932C10.9088 11.6932 10.9495 11.7869 11.0182 11.8588L15.0493 15.8898C15.1961 16.0367 15.4336 16.0367 15.5805 15.8898L15.8898 15.5805C16.0367 15.4336 16.0367 15.1961 15.8898 15.0493ZM6.49968 11.9994C3.45921 11.9994 0.999951 9.54016 0.999951 6.49968C0.999951 3.45921 3.45921 0.999951 6.49968 0.999951C9.54016 0.999951 11.9994 3.45921 11.9994 6.49968C11.9994 9.54016 9.54016 11.9994 6.49968 11.9994Z">
+              </path>
+            </svg>
+          </div>
+
+          <input type="text" placeholder="Search by listing, location, bedroom number..."
+            class="w-full rounded-md border-transparent bg-gray-100 px-8 py-3 text-sm focus:border-gray-500 focus:bg-white focus:ring-0" />
         </div>
 
-        <input type="text" placeholder="Search by listing, location, bedroom number..." class="w-full rounded-md border-transparent bg-gray-100 px-8 py-3 text-sm focus:border-gray-500 focus:bg-white focus:ring-0" />
+        <div class="mt-4 flex items-center justify-between">
+          <p class="font-medium">Filters</p>
+
+          <button type="reset"
+            class="rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200">Réinitialiser
+            Filter</button>
+        </div>
+        <select
+          class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm focus:border-gray-500 focus:bg-white focus:ring-0">
+          <option value="">Tous Domaine</option>
+          <option value="for-rent">For Rent</option>
+          <option value="for-sale">For Sale</option>
+        </select>
+
+        <button type="submit"
+          class="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">Chercher</button>
+      </form>
+      <div id="methodepaiment" class="hidden" action="" method="post">
+
+
+        <div class="mt-4 flex items-center justify-between">
+          <p class="font-medium">SVP choisir methode de paiment </p>
+
+        </div>
+        <select id="mySelect" onchange="choisir()"
+          class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm focus:border-gray-500 focus:bg-white focus:ring-0">
+          <option value="">payer avec :</option>
+          <option value="tuniwork@gmail.com">Sobflous</option>
+          <option value="tuniwork@gmail.com">Runpay</option>
+          <option value="tuniwork@gmail.com">Flouci</option>
+          <option value="25629370 ou 20853674">D17</option>
+        </select>
+        <div id="paiment" class=" bottom-2 bg-gray-100 px-4 py-3 mt-4 rounded-lg">
+          <h1>transferer le montant vers ce distination : </h1>
+          <h1 id="method" class=" font-bold"></h1>
+        </div>
+
+        <button onclick="suivant()"
+          class="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">Suivant</button>
       </div>
+      <form id="checkpaiment" class=" hidden" action="/paiment" method="post" enctype="multipart/form-data">
 
-      <div class="mt-4 flex items-center justify-between">
-        <p class="font-medium">Filters</p>
 
-        <button type="reset" class="rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200">Réinitialiser Filter</button>
-      </div>
-      <select class="mt-4 w-full rounded-md border-transparent bg-gray-100 px-4 py-3 text-sm focus:border-gray-500 focus:bg-white focus:ring-0">
-        <option value="">Tous Domaine</option>
-        <option value="for-rent">For Rent</option>
-        <option value="for-sale">For Sale</option>
-      </select>
+        <div class="mt-4 flex items-center justify-between">
+          <p class="font-medium">SVP confirmer paiment :</p>
+        </div>
+        <div id="paiment" class=" bottom-2 bg-gray-100 px-4 py-3 mt-4 rounded-lg">
+          <h1>Faire capture et inserer le qr Code de la transaction de votre methode choisir : </h1>
+          <input name="id_projet" id="id_projet" value="{{projet.id}}" type="text" hidden>
+          <input name="id_client" id="id_client" value="{{utilisateurs.id}}" type="text" hidden>
+          <input name="id_offer" id="id_offer" value="" type="text" hidden>
+          <div class="mb-6 pt-4">
+            <label class="mb-5 block text-xl font-semibold text-[#07074D]">
+              Télécharger QR code
+            </label>
 
-      <button type="submit" class="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">Chercher</button>
-    </form>
-  </div>
-  <div class="bg- col-span-12 rounded-lg border border-gray-500 p-2 sm:col-span-8">
-    <a class="cursor-pointer text-gray-600" href="/">Retour</a>
-    <div class="flex h-auto flex-row items-center justify-center">
-      <div class="block w-full">
-        <div class="block w-full items-center justify-center rounded-md p-4">
-          <div class="mb-7 flex w-full">
-            <div class="w-full rounded-xl border bg-white p-5 shadow-md">
-              <div class="flex w-full items-center justify-between border-b pb-3">
-                <div class="flex items-center space-x-3">
-                  <div class="text-xs text-neutral-500">{{ formatDate projet.date_publier " YYYY-MM-DD hh:mm"}}</div>
+            <div class="mb-8 ">
+              <input type="file" name="pdfFile" id="pdfFile" class="sr-only" />
+              <label for="pdfFile"
+                class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed cursor-pointer bg-slate-50 border-[#e0e0e0] p-12 text-center">
+                <div>
+                  <span class="mb-2 block text-xl font-semibold text-[#07074D]">
+                    Déposer votre payment
+                  </span>
+                  <span class="mb-2 block text-base font-medium text-[#6B7280]">
+                    Or
+                  </span>
+                  <span
+                    class="inline-flex rounded cursor-pointer border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
+                    parcourir
+                  </span>
                 </div>
-                <div class="flex items-center space-x-8">
-                  <a href="/supprimer/{{projet.id}}" class="text-l rounded-2xl border bg-red-400 px-3 py-1 font-semibold">supprimer</a>
-                  <a href="/modifier/{{projet.id}}" class="text-l rounded-2xl border bg-green-400 px-3 py-1 font-semibold">modfier</a>
-                </div>
-              </div>
+              </label>
+            </div>
 
-              <div class="mb-6 mt-4">
-                <div class="mb-3 text-xl font-bold">{{projet.titre}}</div>
-                <div class="text-sm text-neutral-600">{{projet.description}}</div>
-              </div>
 
-              <div>
-                <div class="flex items-center justify-between text-slate-500">
-                  <div class="flex space-x-4 md:space-x-8">
-                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
-                      <ion-icon class="mr-1.5 h-5 w-5" name="cash-outline"></ion-icon>
 
-                      <span>{{projet.prix}}</span><span> DT</span>
-                    </div>
-                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
-                      <ion-icon class="mr-1.5 h-5 w-5" name="hourglass-outline"></ion-icon>
-                      <span>{{projet.duree}}</span>
-                    </div>
+          </div>
+        </div>
+
+        <button type="submit"
+          class="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">confirmer</button>
+      </form>
+    </div>
+    <div class="bg- col-span-12 rounded-lg border border-gray-500 p-2 sm:col-span-8">
+      <a class="cursor-pointer text-gray-600" href="/listMission">Retour</a>
+      <div class="flex h-auto flex-row items-center justify-center">
+        <div class="block w-full">
+          <div class="block w-full items-center justify-center rounded-md p-4">
+            <div class="mb-7 flex w-full">
+              <div class="w-full rounded-xl border bg-white p-5 shadow-md">
+                <div class="flex w-full items-center justify-between border-b pb-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="text-xs text-neutral-500">{{ formatDate projet.date_publier " YYYY-MM-DD hh:mm"}}</div>
                   </div>
                   <div class="flex items-center space-x-8">
-                    <a href="/listMission" class="text-l rounded-2xl border bg-blue-400 px-3 py-1 font-semibold text-white">voir les autre mission</a>
+                    <a href="/supprimer/{{projet.id}}"
+                      class="text-l rounded-2xl border bg-red-400 px-3 py-1 font-semibold">supprimer</a>
+                    <a href="/modifier/{{projet.id}}"
+                      class="text-l rounded-2xl border bg-green-400 px-3 py-1 font-semibold">modfier</a>
+                  </div>
+                </div>
+
+                <div class="mb-6 mt-4">
+                  <div class="mb-3 text-xl font-bold">{{projet.titre}}</div>
+                  <div class="text-sm text-neutral-600">{{projet.description}}</div>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between text-slate-500">
+                    <div class="flex space-x-4 md:space-x-8">
+                      <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                        <ion-icon class="mr-1.5 h-5 w-5" name="cash-outline"></ion-icon>
+
+                        <span>{{projet.prix}}</span><span> DT</span>
+                      </div>
+                      <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                        <ion-icon class="mr-1.5 h-5 w-5" name="hourglass-outline"></ion-icon>
+                        <span>{{projet.duree}}</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center space-x-8">
+                      <a href="/listMission"
+                        class="text-l rounded-2xl border bg-blue-400 px-3 py-1 font-semibold text-white">voir les autre
+                        mission</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="w-full border border-gray-500 p-4">
-          {{#each offers}}
-          <div class="block w-full items-center justify-center rounded-md pl-8">
-            <h1 class="cursor-pointer text-lg font-semibold text-gray-700 hover:underline">Prix de l'offer : <span> {{prix}} dt</span></h1>
-            <div class="mt-2 flex"></div>
-            <h1 class="cursor-pointer text-lg font-semibold text-gray-700 hover:underline">Description de l'offer :</h1>
-            <p class="text-md mt-4 text-gray-600">{{description}}</p>
-            <div class="flex w-full items-center justify-between border-b pb-3">
-              <div class="flex items-center space-x-3">
-                <div class="mt-4 flex items-center space-x-4 py-6">
-                  <div class="">
-                    <img class="h-12 w-12 rounded-full" src="/uploads/{{image_url}}" alt="" />
-                  </div>
-                  <div class="flex">
-                    <div class="flex text-sm font-semibold">{{nom}} {{prenom}} • <span class="font-normal"> {{ formatDate date_offer " YYYY-MM-DD hh:mm"}} </span></div>
+          <div class="w-full border border-gray-500 p-4">
+            {{#each offers}}
+            <div class="block w-full items-center justify-center rounded-md pl-8">
+              <h1 class="cursor-pointer text-lg font-semibold text-gray-700 hover:underline">Prix de l'offer : <span>
+                  {{prix}} dt</span></h1>
+              <div class="mt-2 flex"></div>
+              <h1 class="cursor-pointer text-lg font-semibold text-gray-700 hover:underline">Description de l'offer :
+              </h1>
+              <p class="text-md mt-4 text-gray-600">{{description}}</p>
+              <div class="flex w-full items-center justify-between border-b pb-3">
+                <div class="flex items-center space-x-3">
+                  <div class="mt-4 flex items-center space-x-4 py-6">
+                    <div class="">
+                      <img class="h-12 w-12 rounded-full" src="/uploads/{{image_url}}" alt="" />
+                    </div>
+                    <div class="flex">
+                      <div class="flex text-sm font-semibold">{{nom}} {{prenom}} • <span class="font-normal"> {{
+                          formatDate date_offer " YYYY-MM-DD hh:mm"}} </span></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="flex items-center space-x-8">
-                <a href="" class="flex h-4 w-4 cursor-pointer items-center justify-center space-x-7 rounded-full bg-green-400 p-6 text-sm text-white shadow-lg">accpter</a>
-                <a href="/profile/{{id}}" class="flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-yellow-400 p-6 text-sm text-white shadow-lg">profile</a>
+                <div class="flex items-center space-x-8">
+                  <button onclick="myFunction('{{offre_id}}')"
+                    class="flex h-4 w-4 cursor-pointer items-center justify-center space-x-7 rounded-full bg-green-400 p-6 text-sm text-white shadow-lg">accpter</button>
+                  <a href="/profile/{{id}}"
+                    class="flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-yellow-400 p-6 text-sm text-white shadow-lg">profile</a>
+                </div>
               </div>
             </div>
+            {{/each }}
           </div>
-          {{/each }}
         </div>
       </div>
     </div>
   </div>
-</div>
+  <script>
+    function myFunction(id) {
+      document.getElementById("id_offer").value = id;
+      let form1 = document.getElementById("filter");
+      let form2 = document.getElementById("methodepaiment");
+      let form3 = document.getElementById("checkpaiment");
+      form1.classList.add('hidden');
+      form2.classList.remove('hidden');
+      form3.classList.add('hidden');
+    }
+    function choisir() {
+      var x = document.getElementById("mySelect").value;
+      if (x == '') {
+        document.getElementById("method").classList.add('hidden');
 
+      } else {
+        document.getElementById("method").classList.remove('hidden');
+        document.getElementById("method").innerHTML = x;
 
-    {{> footer}}
+      }
+    }
+    function suivant() {
+
+      let form1 = document.getElementById("filter");
+      let form2 = document.getElementById("methodepaiment");
+      let form3 = document.getElementById("checkpaiment");
+      form1.classList.add('hidden');
+      form2.classList.add('hidden');
+      form3.classList.remove('hidden');
+    }
+  </script>
+
+  {{> footer}}
 </body>
 
 </html>

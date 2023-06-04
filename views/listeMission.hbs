@@ -71,12 +71,40 @@
           </div>
         </summary>
         <div class=" h-80 overflow-auto ">
+                    {{#each missionRefuse}}
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Projet refuser!</strong>
+            <span class="block sm:inline">Votre Projet qui vous proposez sur un freelance est refuser</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+
+            </span>
+          </div>
+          {{/each }}
+          
+          {{#each missionAccept}}
+          <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+            role="alert">
+            <div class="flex">
+              <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20">
+                  <path
+                    d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+                </svg></div>
+              <div>
+                <p class="font-bold">Projet accepter</p>
+                <p class="text-sm">votre freelance accepte votre projet </p>
+              </div>
+            </div>
+          </div>
+          {{/each }}
           {{#each notification}}
           <a href="/voirMission/{{id}}" class=" mb-2">
-          <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-            <p class="font-bold">Nouvelle proposition d'offer <span class=" text-gray-900" >{{ formatDate date_offer " YYYY-MM-DD hh:mm"}}</span> </p>
-            <p class="text-sm"> IL y a un freelance propose un offer sur votre mission <a href="/voirMission/{{id}}" class=" text-gray-800">voir l'offer</a> </p>
-          </div>
+            <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+              <p class="font-bold">Nouvelle proposition d'offer <span class=" text-gray-900">{{ formatDate date_offer "
+                  YYYY-MM-DD hh:mm"}}</span> </p>
+              <p class="text-sm"> IL y a un freelance propose un offer sur votre mission <a href="/voirMission/{{id}}"
+                  class=" text-gray-800">voir l'offer</a> </p>
+            </div>
           </a>
           {{/each }}
         </div>
@@ -89,54 +117,54 @@
 
         <div class=" w-full ">
           {{#each projet}}
-          
 
-            <div class=" flex w-full mb-4 ">
-              <div class="w-full rounded-xl border bg-white p-5 shadow-md">
-                <div class="flex w-full items-center justify-between border-b pb-3">
-                  <div class="flex items-center space-x-3">
-                    <div class="text-xs text-neutral-500">{{formatDate date_publier " YYYY-MM-DD hh:mm"}}</div>
-                  </div>
-                  <div class="flex items-center space-x-8">
-                    <a href="/supprimer/{{id}}"
-                      class="rounded-2xl border  bg-red-400 px-3 py-1 text-l font-semibold">supprimer</a>
-                    <a href="/modifier/{{id}}"
-                      class="rounded-2xl border   bg-green-400 px-3 py-1 text-l font-semibold">modfier</a>
-                  </div>
+
+          <div class=" flex w-full mb-4 ">
+            <div class="w-full rounded-xl border bg-white p-5 shadow-md">
+              <div class="flex w-full items-center justify-between border-b pb-3">
+                <div class="flex items-center space-x-3">
+                  <div class="text-xs text-neutral-500">{{formatDate date_publier " YYYY-MM-DD hh:mm"}}</div>
                 </div>
-
-                <div class="mb-6 mt-4">
-                  <div class="mb-3 text-xl font-bold"> {{titre}} </div>
-                  <div class="text-sm text-neutral-600"> {{description}} </div>
-                </div>
-
-                <div>
-                  <div class="flex items-center justify-between text-slate-500">
-                    <div class="flex space-x-4 md:space-x-8">
-                      <div class="flex cursor-pointer items-center transition hover:text-slate-600">
-                        <ion-icon class="mr-1.5 h-5 w-5" name="cash-outline"></ion-icon>
-
-                        <span>{{prix}}</span><span> DT</span>
-                      </div>
-                      <div class="flex cursor-pointer items-center transition hover:text-slate-600">
-                        <ion-icon class="mr-1.5 h-5 w-5" name="hourglass-outline"></ion-icon>
-                        <span>{{duree}}</span>
-                      </div>
-
-                    </div>
-                    <div class="flex items-center space-x-8">
-                      <a href="/voirMission/{{id}}"
-                        class="rounded-2xl border text-white  bg-blue-400 px-3 py-1 text-l font-semibold">voir les
-                        offers</a>
-
-                    </div>
-                  </div>
+                <div class="flex items-center space-x-8">
+                  <a href="/supprimer/{{id}}"
+                    class="rounded-2xl border  bg-red-400 px-3 py-1 text-l font-semibold">supprimer</a>
+                  <a href="/modifier/{{id}}"
+                    class="rounded-2xl border   bg-green-400 px-3 py-1 text-l font-semibold">modfier</a>
                 </div>
               </div>
 
+              <div class="mb-6 mt-4">
+                <div class="mb-3 text-xl font-bold"> {{titre}} </div>
+                <div class="text-sm text-neutral-600"> {{description}} </div>
+              </div>
 
+              <div>
+                <div class="flex items-center justify-between text-slate-500">
+                  <div class="flex space-x-4 md:space-x-8">
+                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                      <ion-icon class="mr-1.5 h-5 w-5" name="cash-outline"></ion-icon>
+
+                      <span>{{prix}}</span><span> DT</span>
+                    </div>
+                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                      <ion-icon class="mr-1.5 h-5 w-5" name="hourglass-outline"></ion-icon>
+                      <span>{{duree}}</span>
+                    </div>
+
+                  </div>
+                  <div class="flex items-center space-x-8">
+                    <a href="/voirMission/{{id}}"
+                      class="rounded-2xl border text-white  bg-blue-400 px-3 py-1 text-l font-semibold">voir les
+                      offers</a>
+
+                  </div>
+                </div>
+              </div>
             </div>
-         
+
+
+          </div>
+
           {{/each}}
         </div>
       </div>

@@ -39,6 +39,7 @@ exports.ajoutOffer = (req, res) => {
     if (!req.file) {
       const { id_projet, id_utilisateur, description, montant } = req.body;
       const currentDate = new Date().toISOString().slice(0, 16).replace('T', ' ');
+      const statu = "en cour";
 
       db.query('SELECT * FROM freelance WHERE id_utilisatuers  = ?', [id_utilisateur], (error, results) => {
         if (error) {
@@ -47,7 +48,7 @@ exports.ajoutOffer = (req, res) => {
           const id_freelance = results[0].id;
           db.query(
             'INSERT INTO offer SET ?',
-            { id_freelance: id_freelance, id_projet: id_projet, description: description, prix: montant, date_offer: currentDate },
+            { id_freelance: id_freelance, id_projet: id_projet, description: description, prix: montant, date_offer: currentDate,statut_offer:statu },
             (error, result) => {
               if (error) {
                 console.log(error);
@@ -63,7 +64,7 @@ exports.ajoutOffer = (req, res) => {
         const pdfFile = req.file.filename;
         const { id_projet, id_utilisateur, description, montant } = req.body;
         const currentDate = new Date().toISOString().slice(0, 16).replace('T', ' ');
-  
+        const statu = "en cour";
         db.query('SELECT * FROM freelance WHERE id_utilisatuers  = ?', [id_utilisateur], (error, results) => {
           if (error) {
             throw error;
@@ -71,7 +72,7 @@ exports.ajoutOffer = (req, res) => {
             const id_freelance = results[0].id;
             db.query(
               'INSERT INTO offer SET ?',
-              { id_freelance: id_freelance, id_projet: id_projet, description: description, prix: montant, date_offer: currentDate, cv_freelance:pdfFile },
+              { id_freelance: id_freelance, id_projet: id_projet, description: description, prix: montant, date_offer: currentDate, cv_freelance:pdfFile,statut_offer:statu },
               (error, result) => {
                 if (error) {
                   console.log(error);
@@ -82,6 +83,46 @@ exports.ajoutOffer = (req, res) => {
                 }
               }
             );
+          }
+        })
+
+    }
+  });
+
+};
+exports.ajoutcv = (req, res) => {
+  // Multer configuration
+  const storage = multer.diskStorage({
+    destination: function (request, file, callback) {
+      callback(null, './public/uploads/');
+    },
+    filename: function (request, file, callback) {
+      var temp_file_arr = file.originalname.split(".");
+      var temp_file_name = temp_file_arr[0];
+      var temp_file_extension = temp_file_arr[1];
+      callback(null, temp_file_name + '-' + Date.now() + '.' + temp_file_extension);
+    }
+  });
+  const upload = multer({ storage: storage }).single('pdfFile');
+
+  upload(req, res, (error) => {
+    if (error) {
+      console.error('Erreur lors du téléchargement de CV', error);
+      return res.render('freedashbord', {
+        message: 'Erreur lors du téléchargement de CV',
+      });
+    }
+
+    if (!req.file) {
+           res.status(200).redirect("/profile");
+        } else {
+        const pdfFile = req.file.filename;
+        const { id_freelance } = req.body;  
+        db.query('UPDATE freelance SET cv_freelance = ? WHERE id = ?', [pdfFile,id_freelance], (error, results) => {
+          if (error) {
+            throw error;
+          } else {
+            res.status(200).redirect("/profile");
           }
         })
 

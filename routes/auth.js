@@ -28,9 +28,30 @@ router.get("/dashboard", (req, res) => {
           db.query(query, [type], function (error, results, fields) {
             if (error) {throw error;}
             else {
-              res.render("freedashbord", {
-                 utilisateurs: resultUtilisateurs[0],
-                projet:results });
+              const statu = "en cour";
+              const query = ` SELECT * FROM projet_proposer WHERE id_freelance = ? and statut_projet = ?  order by date_publier DESC `;
+              db.query(query, [id,statu], function (error, resultsNotification, fields) {
+                if (error) {throw error;}
+                else {
+                  const typeoffer = "accepter"; 
+                  const query = ` SELECT offer.id_projet
+                  FROM utilisateurs
+                  INNER JOIN freelance ON utilisateurs.id = freelance.id_utilisatuers
+                  INNER JOIN offer ON freelance.id = offer.id_freelance
+                  WHERE utilisateurs.id = ? and statut_offer = ?  order by date_offer DESC `;
+                  db.query(query, [id,typeoffer], function (error, resultsAccept, fields) {
+                    if (error) {throw error;}
+                    else {
+                      res.render("freedashbord", {
+                         utilisateurs: resultUtilisateurs[0],
+                         projet:results,
+                         notification: resultsNotification,
+                         notificationAccept: resultsAccept
+                        });
+                    }
+                  });
+                }
+              });
             }
           });
         }

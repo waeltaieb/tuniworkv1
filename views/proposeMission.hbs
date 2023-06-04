@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/style.css">
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+  {{> navbarClient}}
+  
+ <div class="mx-auto grid md:p-1 lg:p-20 w-7xl grid-cols-12 gap-4 bg-zinc-50">
+    <div class="header col-span-12 rounded-lg border-y-4  border-blue-300  py-8">
+      <h1 class="ml-32 font-extrabold ">Proposer votre mission  </h1>
+    </div>
+    <div
+      class="col-span-12 rounded-lg border border-gray-400 bg-gradient-to-r from-sky-300 to-blue-300  sm:col-span-4">
+    
+      <div class="flex justify-between container mx-auto">
+        <div class="w-full">
+          <div class="mt-4 px-4">
+            <a href="/dashboardClient" class="text-3xl font-semibold text-gray-600 py-7 px-5">Retour </a>
+            <form action="/proposerMission" method="post" class="mx-5 my-5">
+            <input type="text" id="id_user" name="id_user" value="{{utilisateurs.id}}" hidden>
+            <input type="text" id="id_freelance" name="id_freelance" value="{{utilisateur.id}}" hidden>
+              <label class="relative block p-3 border-2 border-black rounded" For="Titre ">
+                <span class="text-md font-semibold text-zinc-900" For="titre">
+                  Titre de mission
+                </span>
+                <input class="w-full bg-transparent p-0 text-sm  text-zinc-800 focus:outline-none" id="titre" name="titre" type="text"
+                  placeholder="vous titre" />
+              </label>
+
+              <label class="relative block p-3 border-2 mt-5 border-black rounded" For="discription">
+                <span class="text-md font-semibold text-zinc-900" For="discription">
+                  description
+                </span>
+                <textarea  class="w-full    p-0 text-sm border-none bg-transparent text-zinc-800 focus:outline-none"
+                  placeholder="ecrire vous discription de mission" name="description" id="description" cols="30" rows="10"></textarea>
+
+              </label>
+
+
+              <label class="relative block p-3 border-2  mt-5 border-black rounded" For="name">
+                <span class="text-md font-semibold  text-zinc-900" For="prix">
+                  Prix de mission
+                </span> <br>
+
+                <input class="w-1/6 read-only:bg-zinc-800  p-0 text-sm bg-transparent text-zinc-800 focus:outline-none"
+                  id="prix" name="prix" type="number" placeholder=" 1000 " /> <span
+                  class="text-md font-semibold text-zinc-900">DT</span>
+
+              </label>
+
+              <label class="relative block p-3 border-2 mt-5 border-black rounded" htmlFor="name">
+                <span class="text-md font-semibold  text-zinc-900" For="duree">
+                  Duree de mission
+                </span>
+
+                <input class="w-full read-only:bg-zinc-800  p-0 text-sm bg-transparent text-zinc-800 focus:outline-none"
+                  id="duree" name="duree" type="text" placeholder="exmple 1 mois" />
+
+              </label>
+
+
+              <label for="Domaine" class="text-2xl font-semibold mt-5">Domaine de mission :</label>
+              <select id="domaine" name="domaine"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option class="border-2 border-black rounded-md border-b-4 border-l-4 font-black px-2">Choisir Domaine
+                </option>
+                <option class="border-2 border-black rounded-md border-b-4 border-l-4 font-black px-2" value="Technologie Informatique">Technologie Informatique</option>
+                <option class="border-2 border-black rounded-md border-b-4 border-l-4 font-black px-2" value="Developpeur fullstack">Developpeur fullstack</option>
+                <option class="border-2 border-black rounded-md border-b-4 border-l-4 font-black px-2" value="Developpeur BackEnd"> Developpeur BackEnd</option>
+                <option class="border-2 border-black rounded-md border-b-4 border-l-4 font-black px-2" value="Developpeur frontend"> Developpeur frontend </option>
+                <option class="border-2 border-black rounded-md border-b-4 border-l-4 font-black px-2" value="designe web">  designe web </option>
+              </select>
+              <Button type="submit"
+                class="mt-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4">
+                publier
+              </Button>
+              <Button type="reset"
+                class="mt-5 border-2 px-5 py-2 rounded-lg border-black border-b-4 font-black translate-y-2 border-l-4">
+                annuler
+              </Button>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    
+    </div>
+    <div class="col-span-12 rounded-lg border border-gray-500 bg- p-2 sm:col-span-8">
+          <div
+            class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
+            <div class="px-6">
+              <div class="flex flex-wrap justify-center">
+                <div class="w-full flex justify-center">
+                  <div class="relative">
+                    <img src="/uploads/{{utilisateur.image_url}}"
+                      class="shadow-xl rounded-full align-middle border-none absolute -m-16 h-32 w-32 -ml-20 lg:-ml-16 max-w-[150px]" />
+                  </div>
+                </div>
+                <div class="w-full text-center mt-20">
+
+                </div>
+              </div>
+              <div class="text-center mt-2">
+                <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">{{utilisateur.nom}}
+                  {{utilisateur.prenom}}</h3>
+                <h3 class="text-xl text-slate-700 font-bold leading-normal mb-1"> {{freelances.categories}}</h3>
+                <div class="text-xs  mt-2 text-slate-400 font-bold uppercase">
+                  {{#each competance}}
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">{{nom}}
+                  </span>
+                  {{/each }}
+
+                </div>
+              </div>
+              <div class="mt-6 py-6 border-t border-slate-200 text-center">
+                <div class="flex flex-wrap justify-center">
+                  <div class="w-full px-4">
+                    <p class="font-light leading-relaxed text-slate-600 mb-4"> {{freelances.discription}} </p>
+                    <a href="/uploads/{{freelances.cv_freelance}}"
+                      class="font-normal text-slate-700 hover:text-slate-400">Voir Son CV </a>
+                    
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+  </div>
+
+  {{> footer}}
+  <script>
+    function Menu(e) {
+      let list = document.querySelector('ul');
+      e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
+    }
+  </script>
+</body>
+
+</html>
