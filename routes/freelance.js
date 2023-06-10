@@ -126,6 +126,7 @@ router.get("/offer/:id", (req, res) => {
         });
       }
     });
+  
 
 
   } else {
@@ -186,9 +187,20 @@ router.get('/modifierOffer/:id', (req,res) => {
           if(error){
             throw error;
           }else{
-            res.render("missionCourfreelance", {
-              utilisateurs: req.session.user,
-              projet:result,
+            const statuProjet = "accepter";
+            const sql =`SELECT *  FROM projet_proposer WHERE id_freelance = ? and statut_projet = ? order by date_publier DESC`;
+            db.query(sql, [id,statuProjet] , function (error, resultproposition, fields) {
+              if(error){
+                throw error;
+              }else{
+                
+                res.render("missionCourfreelance", {
+                  utilisateurs: req.session.user,
+                  projet:result,
+                  projetproposer:resultproposition
+                });
+            
+              }
             });
         
           }
@@ -324,6 +336,146 @@ router.get('/modifierOffer/:id', (req,res) => {
   } else {
     res.redirect("/connexion");
   }
+ });
+ router.get('/Terminer/:id', (req, res) => {
+  if (req.session.user) {
+    const id = req.session.user.id;
+    db.query('SELECT * FROM freelance WHERE id_utilisatuers = ?', [id], function (error, results, fields) {
+      if (error) {
+        throw error;
+      } else {
+        const statu = "en cour";
+        const id = req.params.id;
+        const query = 'UPDATE projet set statut_projet = ?  WHERE id = ? ';
+        db.query(query, [statu, id], (error, result) => {
+          if (error) {
+            console.error('Erreur lors de l\'exécution de la requête select :', error);
+            res.status(500).send('Erreur interne du serveur');
+            return;
+          } else { 
+            const id = req.params.id;
+            const query = 'DELETE from offer WHERE id_projet = ? ';
+            db.query(query, [ id], (error, resultoffer) => {
+              if (error) {
+                console.error('Erreur lors de l\'exécution de la requête select :', error);
+                res.status(500).send('Erreur interne du serveur');
+                return;
+              } else {
+                const id = req.params.id;
+                const query = 'DELETE from payement WHERE id_projet = ? ';
+                db.query(query, [id], (error, resultpayement) => {
+                  if (error) {
+                    console.error('Erreur lors de l\'exécution de la requête select :', error);
+                    res.status(500).send('Erreur interne du serveur');
+                    return;
+                  } else {
+                    res.status(200).redirect("/dashboard");
+                  }
+                });
+              }
+            });
+          }
+        });
+
+      }
+    });
+  } else {
+    res.redirect("/connexion");
+  }
+});
+
+router.get('/mission/:id',(req,res) => {
+  if (req.session.user) {
+
+    const id = req.session.user.id;
+    db.query('SELECT * FROM freelance WHERE id_utilisatuers = ?', [id], function (error, results, fields) {
+      if(error){
+        throw error;
+      }else{
+        const id_projet = req.params.id;
+        const statuProjet = "en cour";
+        const sql =`SELECT *  FROM projet_proposer WHERE id = ? and id_freelance = ? and statut_projet = ?  `;
+        db.query(sql, [id_projet,id,statuProjet] , function (error, result, fields) {
+          if(error){
+            throw error;
+          }else{
+            const id_client = result[0].id_client;
+            const sql =`SELECT utilisateurs.nom, utilisateurs.prenom
+              FROM utilisateurs
+              INNER JOIN client ON utilisateurs.id = client.id_utilisateurs
+              WHERE client.id = ? `;
+            db.query(sql, [id_client] , function (error, resultclient, fields) {
+              if(error){
+                throw error;
+              }else{
+                res.render("mission", {
+                  utilisateurs: req.session.user,
+                  projet:result[0],
+                  client:resultclient[0]
+                });
+            
+              }
+            });
+        
+          }
+        });
+      }
+    });
+    
+  } else {
+    res.redirect("/connexion");
+  }
+
+ });
+
+ router.get('/accepteprojet/:id',(req,res) => {
+  if (req.session.user) {
+    const id_projet = req.params.id;
+    const id = req.session.user.id;
+    const statuProjet = "accepter";
+    db.query('select * FROM projet_proposer WHERE id = ? and id_freelance = ? ', [id_projet,id], function (error, results, fields) {
+      if(error){
+        throw error;
+      }else{
+        db.query('UPDATE projet_proposer SET  statut_projet = ? WHERE id = ? and id_freelance = ?',[statuProjet,id_projet,id], function (error, resultupddate, fields) {
+          if(error){
+            throw error;
+          }else{
+            res.status(200).redirect("/missionCour");
+          }
+        });
+      }
+    });
+    
+  } else {
+    res.redirect("/connexion");
+  }
+
+ });
+
+ router.get('/refusserprojet/:id',(req,res) => {
+  if (req.session.user) {
+    const id_projet = req.params.id;
+    const id = req.session.user.id;
+    const statuProjet = "refuser";
+    db.query('select * FROM projet_proposer WHERE id = ? and id_freelance = ? ', [id_projet,id], function (error, results, fields) {
+      if(error){
+        throw error;
+      }else{
+        db.query('UPDATE projet_proposer SET  statut_projet = ? WHERE id = ? and id_freelance = ?',[statuProjet,id_projet,id], function (error, resultupddate, fields) {
+          if(error){
+            throw error;
+          }else{
+            res.status(200).redirect("/missionCour");
+          }
+        });
+      }
+    });
+    
+  } else {
+    res.redirect("/connexion");
+  }
+
  });
 
 router.post('/ajoutOffer', freelanceController.ajoutOffer);

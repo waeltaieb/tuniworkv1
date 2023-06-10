@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/styles/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuniWork</title>
+</head>
+
+<body>
+    {{> navbar}}
+    <div class="mx-auto grid md:p-1 lg:p-20  w-7xl grid-cols-12 gap-4 bg-zinc-50">
+        <div class="header col-span-12 rounded-lg border-y-4  border-blue-300  py-8">
+
+            <div class="ml-10 flex w-11/12 font-extrabold italic  text-gray-800  text-5xl">
+                <img src="/images/hallo.png" class=" w-8 h-8 mr-3" alt="" srcset="">
+                <h1>Bienvenue <span class=" font-extrabold  text-4xl"> {{utilisateurs.nom}}
+                        {{utilisateurs.prenom}}</span> </h1>
+            </div>
+        </div>
+        <div
+            class="col-span-12 rounded-lg border border-gray-400 bg-gradient-to-r from-sky-300 to-blue-300 p-16 sm:col-span-4">
+
+        </div>
+        <div class="col-span-12 rounded-lg border border-gray-500 bg- p-2 sm:col-span-8">
+            {{#if projet}}
+            <div class="flex w-full mb-4">
+                <div class="w-full rounded-xl border bg-white p-5 shadow-md">
+                    <div class="flex w-full items-center justify-between border-b pb-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="text-lg font-bold text-slate-700">{{client.nom}} {{client.prenom}}</div>
+                        </div>
+                        <div class="flex items-center space-x-8">
+                            <div class="text-xs text-neutral-500">{{ formatDate projet.date_publier " YYYY-MM-DD
+                                hh:mm"}}</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 mt-4">
+                        <div class="mb-3 text-xl font-bold"> {{projet.titre}} </div>
+                        <div class="text-sm text-neutral-600"> {{projet.description}} </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between text-slate-500">
+                            <div class="flex  w-full items-center justify-between md:space-x-8">
+                                <div class=" flex">
+                                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                                        <ion-icon class="mr-1.5 h-5 w-5" name="cash-outline"></ion-icon>
+                                        <span>{{projet.prix}}</span>
+                                    </div>
+                                    <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                                        <ion-icon class="mr-1.5 h-5 w-5" name="hourglass-outline"></ion-icon>
+                                        <span>{{projet.duree}}</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-8 ">
+                                    <a href="/accepteprojet/{{projet.id}}"  class="flex h-4 w-4 cursor-pointer items-center justify-center space-x-7 rounded-full bg-green-400 p-6 text-sm text-white shadow-lg">accpter</a>
+                                    <a href="/refusserprojet/{{projet.id}}" class="flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-red-400 p-6 text-sm text-white shadow-lg">Refuser</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+    {{> footer}}
+</body>
+
+</html>

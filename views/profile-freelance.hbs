@@ -46,30 +46,24 @@
       <div class="w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-1">
         <div class="p-4   w-full rounded-md   col-span-2 ">
           <div class="grid grid-cols-1  lg:grid-cols-3 gap-4 lg:gap-8">
+            {{#each freelances}}
             <div class="p-4  rounded-md block">
-
-
               <div
                 class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                  <img class="p-8 rounded-t-lg" src="images/contact.png" alt="profile image" />
+                <a href="/registerClient">
+                  <img class="lg:ml-16  p-8   rounded-t-lg h-48 w-48 rounded-3xl " src="/uploads/{{image_url}}" alt="profile image" />
                 </a>
                 <div class="px-5 pb-5">
                   <a href="#">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Nom et prenom </h5>
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-700 ">titre</h5>
+                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">{{nom}} {{prenom}}  </h5>
+                    <h5 class="text-xl font-semibold tracking-tight text-gray-700 ">{{categories}}</h5>
                   </a>
-                  <div class="items-center mt-2.5 mb-5">
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
+                  <div class="items-center overflow-hidden h-48 p-2 mt-2.5 mb-5">
+                    {{substring discription 0 245}}...
                   </div>
                   <div class="flex items-center justify-between">
                     
-                    <a href="#"
+                    <a href="/registerClient"
                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> voir </a>
                   </div>
                 </div>
@@ -77,99 +71,7 @@
 
 
             </div>
-            <div class="p-4  rounded-md ">
-
-
-              <div
-                class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                  <img class="p-8 rounded-t-lg" src="images/contact.png" alt="profile image" />
-                </a>
-                <div class="px-5 pb-5">
-                  <a href="#">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Nom et prenom </h5>
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-700 ">titre</h5>
-                  </a>
-                  <div class="items-center mt-2.5 mb-5">
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    
-                    <a href="#"
-                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> voir </a>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-            <div class="p-4  rounded-md ">
-
-
-              <div
-                class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                  <img class="p-8 rounded-t-lg" src="images/contact.png" alt="profile image" />
-                </a>
-                <div class="px-5 pb-5">
-                  <a href="#">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Nom et prenom </h5>
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-700 ">titre</h5>
-                  </a>
-                  <div class="items-center mt-2.5 mb-5">
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    
-                    <a href="#"
-                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> voir </a>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-            <div class="p-4  rounded-md ">
-
-
-              <div
-                class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                  <img class="p-8 rounded-t-lg" src="images/contact.png" alt="profile image" />
-                </a>
-                <div class="px-5 pb-5">
-                  <a href="#">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Nom et prenom </h5>
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-700 ">titre</h5>
-                  </a>
-                  <div class="items-center mt-2.5 mb-5">
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                     <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded  ml-2 ">Node js</span>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2 ">Node js</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    
-                    <a href="#"
-                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> voir </a>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
+            {{/each}}
 
 
             
@@ -178,13 +80,13 @@
         <div class="p-4  rounded-md   justify-center">
           <div
             class=" mb-8  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
+            <a href="/registerClient">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Vous recherchez un
                 freelance ? </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">En soumettant votre projet, vous profiterez
               d'une mise en correspondance efficace pour trouver le freelance qui répondra le mieux à vos besoins.</p>
-            <a href="#"
+            <a href="/registerClient"
               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               ajout une mission
               <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -197,11 +99,11 @@
           </div>
           <div
             class=" mb-8 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
+            <a href="/register">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Vous recherchezune mission ?</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">En déposant votre CV, vous accédez aux meilleures missions en direct avec les grands comptes !.</p>
-            <a href="#"
+            <a href="/register"
               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               chercher une mission
               <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -214,13 +116,13 @@
           </div>
                     <div
             class=" max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
+            <a href="/journal">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Notre Communautés </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> communique régulièrement ses idées et ses impressions sur divers sujets</p>
-            <a href="#"
+            <a href="/journal"
               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              ajout un blog 
+              Aller a blog 
               <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"

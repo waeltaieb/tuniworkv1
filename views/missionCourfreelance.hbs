@@ -68,6 +68,50 @@
        
         
         <div class=" w-full ">
+                  {{#each projetproposer}}
+               <div class="p-4 rounded-md block items-center justify-center">
+
+                    <div class=" flex w-full mb-7 ">
+                        <div class="w-full rounded-xl border bg-white p-5 shadow-md">
+                            <div class="flex w-full items-center justify-between border-b pb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-xs text-neutral-500">{{formatDate date_publier " YYYY-MM-DD hh:mm"}}</div>
+                                </div>
+                                <div class="flex items-center space-x-8">
+                                    <div  class="rounded-2xl border  bg-yellow-500 px-3 py-1 text-l font-semibold">Mission en cour</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6 mt-4">
+                                <div class="mb-3 text-xl font-bold"> {{titre}} </div>
+                                <div class="text-sm text-neutral-600"> {{description}} </div>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center justify-between text-slate-500">
+                                    <div class="flex space-x-4 md:space-x-8">
+                                        <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                                            <ion-icon class="mr-1.5 h-5 w-5" name="cash-outline"></ion-icon>
+                                            
+                                            <span>{{prix}}</span><span> DT</span>
+                                        </div>
+                                        <div class="flex cursor-pointer items-center transition hover:text-slate-600">
+                                           <ion-icon class="mr-1.5 h-5 w-5" name="hourglass-outline"></ion-icon>
+                                            <span>{{duree}}</span>
+                                        </div>
+                                       
+                                </div>
+                                <div class="flex items-center space-x-8">
+                                    <a href="/offerMission/{{id}}" class="rounded-2xl border text-white  bg-blue-400 px-3 py-1 text-l font-semibold">voir l'offer</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+        </div>
+        {{/each}}
         {{#each projet}}
                <div class="p-4 rounded-md block items-center justify-center">
 

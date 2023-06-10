@@ -17,6 +17,11 @@ Handlebars.registerHelper('formatDate', function(date, format) {
     // Use the moment library to format the date
     return moment(date).format(format);
   });
+  Handlebars.registerHelper('substring', function (str, start, length) {
+    if (str && typeof str === 'string') {
+      return str.substr(start, length);
+    }
+  });
 
 dotenv.config({ path: "./.env" });
 app.use(session({

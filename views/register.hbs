@@ -37,32 +37,33 @@
             
           </script>
           {{/if}}
+          <h2 class="mb-4 text-4xl">Bienvenue freelance</h2>
           <h2 class="mb-4 text-3xl">Faire inscrire</h2>
           <p class="mb-4">Créez votre compte. C'est gratuit et ne prend qu'une minute</p>
           <form action="register" method="post">
             <div class="grid grid-cols-2 gap-5">
               <input type="text" placeholder="Nom" id="nom" name="nom" class="border border-gray-400 px-2 py-1" />
               <input type="text" placeholder="Prenom" id="prenom" name="prenom"
-                class="border border-gray-400 px-2 py-1" />
+                class="border border-gray-400 px-2 py-1"required />
             </div>
             <div class="mt-5">
               <input type="text" placeholder="Nom utilisation" id="pseudo" name="pseudo"
-                class="w-full border border-gray-400 px-2 py-1" />
+                class="w-full border border-gray-400 px-2 py-1"required />
             </div>
             <div class="mt-5">
               <input type="email" placeholder="Email" id="email" name="email"
-                class="w-full border border-gray-400 px-2 py-1" />
+                class="w-full border border-gray-400 px-2 py-1"required />
             </div>
             <div class="mt-5">
               <input type="password" placeholder="Mot de Passe" id="mot_de_passe" name="mot_de_passe"
-                class="w-full border border-gray-400 px-2 py-1" />
+                class="w-full border border-gray-400 px-2 py-1" required/>
             </div>
             <div class="mt-5">
               <input type="password" placeholder="Confirmer Mot de passe" id="confirm_mot_de_passe"
-                name="confirm_mot_de_passe" class="w-full border border-gray-400 px-2 py-1" />
+                name="confirm_mot_de_passe" class="w-full border border-gray-400 px-2 py-1"required />
             </div>
             <div class="mt-5">
-              <input type="date" id="date_nai" name="date_nai" class="w-full border border-gray-400 px-2 py-1" />
+              <input type="date" id="date_nai" name="date_nai" class="w-full border border-gray-400 px-2 py-1"required />
             </div>
             <div class="mt-5 ">
               <input type="checkbox" class="border border-gray-400" required />

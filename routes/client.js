@@ -74,10 +74,22 @@ router.get('/missionEncour', (req, res) => {
           if (error) {
             throw error;
           } else {
-            res.render("missionCour", {
-              utilisateurs: req.session.userclient,
-              projet: result,
+            const statuProjet = "accepter";
+            const sql =`SELECT *  FROM projet_proposer WHERE id_client = ? and statut_projet = ? order by date_publier DESC`;
+            db.query(sql, [id_client,statuProjet] , function (error, resultproposition, fields) {
+              if(error){
+                throw error;
+              }else{
+                res.render("missionCour", {
+                  utilisateurs: req.session.userclient,
+                  projet: result,
+                  projetproposer:resultproposition
+                });
+                
+            
+              }
             });
+            
 
           }
         });
@@ -102,11 +114,12 @@ router.get('/listMission', (req, res) => {
           if (error) {
             throw error;
           } else {
+            const type ="en cour";
             const query = `
             SELECT  projet.id, offer.date_offer
             FROM projet
             INNER JOIN offer ON projet.id = offer.id_projet
-            WHERE projet.id_client = ? order by offer.date_offer DESC
+            WHERE projet.id_client = ? and projet.statut_projet order by offer.date_offer DESC
           `;
             db.query(query, [id_client], function (error, resultsoffer, fields) {
               if (error) {
