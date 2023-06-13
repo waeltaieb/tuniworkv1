@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuniWork</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body>
+  <div class="flex flex-row">
+    {{>bar}}
+
+    <div class="w-full">
+      {{>nav}}
+      <div class="bg-blue-50">
+        <div class="min-h-screen">
+          <div class="ml-10 flex justify-center items-center space-x-10">
+            <div class="  h-56 w-56  mt-10">
+              <h1 class=" text-lg font-semibold">porte monnaie utiliser :</h1>
+              <h1 class="">{{payment.method}}</h1>
+              <img src="/uploads/{{payment.image_url}}" alt="" class=" p-6 h-56 w-56  " />
+            </div>
+
+            <div class="mb-2 w-2/3 rounded-xl border bg-white p-5 shadow-md mt-10">
+              <div class="flex w-full items-center justify-between border-b pb-3">
+                <!-- User details code -->
+                <div class="flex items-center space-x-3">
+                  <div class="rounded-full border">
+                    <img src="/uploads/{{projet.image_url}}" alt="" class="h-8 w-8" />
+                  </div>
+
+                  <div class="text-xs text-neutral-500">{{projet.nom}}</div>
+                  <div class="text-xs text-neutral-500">{{projet.prenom}}</div>
+
+
+                </div>
+
+              </div>
+              <div class="mb-6 mt-4">
+                <div class="mb-3 text-xl font-bold">{{projet.titre}}</div>
+                <div class="mx-2 text-sm text-neutral-600">{{projet.description}}</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="flex flex-col justify-center items-center">
+            <div class="w-2/3 rounded-xl border bg-white p-5 shadow mt-6">
+              <div class="flex w-full items-center justify-between border-b pb-3">
+                <!-- User details code -->
+                <div class="flex items-center space-x-3">
+                  <div class="rounded-full border">
+                    <img src="/uploads/{{freelancer.image_url}}" alt="" class="h-8 w-8" />
+                  </div>
+
+                  <div class="text-xs text-neutral-500">{{freelancer.prenom}}</div>
+                  <div class="text-xs text-neutral-500">{{freelancer.nom}}</div>
+                </div>
+                <div>{{formatDate freelancer.date_offer " YYYY-MM-DD hh:mm"}}</div>
+              </div>
+              <div class="mb-6 mt-4">
+                <div class="mb-3 text-xl font-bold"></div>
+                <div class="mx-2 text-sm text-neutral-600">{{freelancer.description}}</div>
+              </div>
+            </div>
+
+            <div class="w-2/3 p-5 mt-6">
+              <div class=" relative">
+
+                <div class=" absolute inset-y-0 right-0">
+                  <div class="flex space-x-4">
+                    <form method="post" action="/accepter">
+                      <input type="hidden" name="paiementid" value="{{payment.id}}" />
+                      <button
+                        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                        accepter
+                      </button>
+                    </form>
+                    <form method="post" action="/envoyeralert">
+                      <input type="hidden" name="paiementid1" value="{{payment.id}}" />
+                      <button
+                        class="bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-600 hover:border-transparent rounded">
+                        envoyer alerte
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function Menu(e) {
+          let list = document.querySelector('ul');
+          e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) 🙁 e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
+        }
+      </script>
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+</body>
+
+</html>

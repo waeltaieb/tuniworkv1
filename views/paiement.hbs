@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuniWork</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+
+  <body>
+    <div class="flex flex-row">
+      {{>bar}}
+
+      <div class="w-full">
+        {{>nav}}
+        <div class="bg-blue-50">
+          <div class="min-h-screen">
+            <form method="post" action="paiement">
+              <div class="flex items-center justify-center">
+                <div class="mx-auto mt-10 flex w-1/2 items-center rounded-lg border border-blue-700 bg-white" x-data="{ search: '' }">
+                  <div class="w-full">
+                    <input type="search" class="w-full rounded-full px-4 py-1 text-gray-800 focus:outline-none" name="searchQuery" placeholder="search" x-model="search" />
+                  </div>
+                  <div>
+                    <button type="submit" class="flex h-12 w-12 items-center justify-center rounded-r-lg bg-blue-500 text-white" :class="(search.length > 0) ? 'bg-blue-700' : 'bg-gray-500 cursor-not-allowed'" :disabled="search.length == 0">
+                      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="mx-10 mt-20">
+              {{#each Paiement}}
+              <div class="relative mb-2 mt-4 flex w-auto rounded-xl border bg-white p-5 shadow-md">
+                <div class="flex items-center space-x-3">
+                  <div class="text-xs text-neutral-500">Paiement numéro {{id}}</div>
+                </div>
+                <div class="absolute inset-y-0 right-3 mt-3">
+                 
+                  <a href="/consulterpaiement/{{id}}">Consulter Paiement</a>
+                  
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function Menu(e){
+        let list = document.querySelector('ul');
+        e.name === 'menu' ? (e.name = "close",list.classList.add('top-[80px]') , list.classList.add('opacity-100')) 🙁 e.name = "menu" ,list.classList.remove('top-[80px]'),list.classList.remove('opacity-100'))
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+  </body>
+</html>

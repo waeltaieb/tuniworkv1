@@ -70,6 +70,7 @@ app.set("view engine", ".hbs");
 app.set("views", "./views");
 
 //routes
+app.use('/', require('./routes/admin'));
 app.use('/', require('./routes/pages'));
 app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/freelance'));

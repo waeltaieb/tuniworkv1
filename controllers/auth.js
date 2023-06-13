@@ -267,7 +267,30 @@ exports.login = (req, res, next) => {
 
             } else {
 
+              db.query(
+                "select * from utilisateurs where email=?",
+                [email],
+                (error, result) => {
+                  if (result.length <= 0) {
+                    return res.status(401).render("loginAdmin", {
+                      message: "SVP Ecrire voutr Email et  Mot de passe",
+          
+                    });
+                  }else {
+                    if (mot_de_passe != result[0].mot_de_passe) {
+                      return res.status(401).render("loginAdmin", {
+                        message: "SVP Ecrire voutr Email et  Mot de passe",
+          
+                      });
+                    }else if (result[0].type_compte == "admin") {
 
+                      req.session.admin = result[0];
+                      id_utilisateurs = result[0].id;
+                      res.status(200).redirect("/admin/dashboard");
+        
+                    }
+                  }
+                })
             }
 
 
